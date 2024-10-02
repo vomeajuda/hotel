@@ -110,5 +110,10 @@ public class Edit extends JFrame{
         janela.add(panel9, BorderLayout.SOUTH);
 
         pack();
+
+        btnV.addActionListener((actionEvent) -> {
+            this.dispose();
+            Main.telaP.setVisible(true);
+        });
     }
 }

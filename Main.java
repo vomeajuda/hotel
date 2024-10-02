@@ -1,8 +1,9 @@
 public class Main{
     public static Insert telaI = new Insert();
-    public static Edit telaE = new Edit();
+    public static Edit telaEd = new Edit();
+    public static Inicial telaP = new Inicial();
     public static void main(String[] args) {
-        telaI.setVisible(true);
-        telaE.setVisible(true);
+        telaP.setVisible(true);
+        telaP.setSize(300, 200);
     }
 }
