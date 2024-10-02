@@ -30,9 +30,21 @@ public class Inicial extends JFrame{
             Main.telaI.setVisible(true);
         });
 
+        btnC.addActionListener((actionEvent) -> {
+            this.dispose();
+            Main.telaC1.setVisible(true);
+            Main.telaC1.setSize(300, 150);
+        });
+
         btnEd.addActionListener((actionEvent) -> {
             this.dispose();
             Main.telaEd.setVisible(true);
+        });
+
+        btnEx.addActionListener((actionEvent) -> {
+            this.dispose();
+            Main.telaEx.setVisible(true);
+            Main.telaEx.setSize(200, 150);
         });
     }
 }
