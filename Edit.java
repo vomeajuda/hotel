@@ -2,7 +2,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class Insert extends JFrame{
+public class Edit extends JFrame{
     private JLabel labelq, labelcpf, labela, labelt, labelo;
     private JTextField fieldq, fielda, fieldcpf;
     private JCheckBox checkV, checkM, checkF, checkT;
@@ -11,8 +11,8 @@ public class Insert extends JFrame{
     private JButton btnE, btnV;
     private JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9;
 
-    public Insert(){
-        super("Criação");
+    public Edit(){
+        super("Editar");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
         panel1 = new JPanel();
