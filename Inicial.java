@@ -3,7 +3,7 @@ import java.awt.*;
 
 public class Inicial extends JFrame{
     private JLabel titulo;
-    private JButton btnI, btnC, btnEd, btnEx;
+    private JButton btnI, btnC, btnEd, btnEx, btnS;
 
     public Inicial(){
         super("Inicio");
@@ -14,16 +14,18 @@ public class Inicial extends JFrame{
         btnC = new JButton("Consultar");
         btnEd = new JButton("Editar");
         btnEx = new JButton("Excluir");
+        btnS = new JButton("Sair");
 
         Container janela;
         janela = getContentPane();
-        janela.setLayout(new GridLayout(5, 1));
+        janela.setLayout(new GridLayout(6, 1));
 
         janela.add(titulo);
         janela.add(btnI);
         janela.add(btnC);
         janela.add(btnEd);
         janela.add(btnEx);
+        janela.add(btnS);
 
         btnI.addActionListener((actionEvent) -> {
             this.dispose();
@@ -45,6 +47,10 @@ public class Inicial extends JFrame{
             this.dispose();
             Main.telaEx.setVisible(true);
             Main.telaEx.setSize(200, 150);
+        });
+
+        btnS.addActionListener((actionEvent) -> {
+            System.exit(0);
         });
     }
 }
