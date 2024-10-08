@@ -34,6 +34,11 @@ public class Consulta1 extends JFrame{
         janela.add(campo, BorderLayout.CENTER);
         janela.add(panel, BorderLayout.SOUTH);
 
+        btnT.addActionListener((actionEvent) -> {
+            this.dispose();
+            Main.telaC2.setVisible(true);
+        });
+
         btnV.addActionListener((actionEvent) -> {
             this.dispose();
             Main.telaP.setVisible(true);

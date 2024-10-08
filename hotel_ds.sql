@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Out-2024 às 19:18
+-- Tempo de geração: 08-Out-2024 às 20:32
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -28,15 +28,23 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `quartos` (
-  `N_Quartos` int(3) NOT NULL,
-  `Acom` int(1) NOT NULL,
-  `Varanda` tinyint(1) NOT NULL,
-  `MicOndas` tinyint(1) NOT NULL,
-  `Frigobar` tinyint(1) NOT NULL,
-  `TV` tinyint(1) NOT NULL,
-  `CPF` varchar(15) NOT NULL,
-  `Ocup` tinyint(1) NOT NULL
+  `N_Quarto` int(3) NOT NULL,
+  `acomoda` int(2) NOT NULL,
+  `varanda` tinyint(1) DEFAULT NULL,
+  `microondas` tinyint(1) DEFAULT NULL,
+  `frigobar` tinyint(1) DEFAULT NULL,
+  `tv` tinyint(1) DEFAULT NULL,
+  `cpf` varchar(15) NOT NULL,
+  `ocupado` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `quartos`
+--
+
+INSERT INTO `quartos` (`N_Quarto`, `acomoda`, `varanda`, `microondas`, `frigobar`, `tv`, `cpf`, `ocupado`) VALUES
+(101, 2, 1, 1, 1, 1, '12345678900', 1),
+(102, 2, 0, 1, 1, 0, '98765432100', 0);
 
 --
 -- Índices para tabelas despejadas
@@ -46,7 +54,7 @@ CREATE TABLE `quartos` (
 -- Índices para tabela `quartos`
 --
 ALTER TABLE `quartos`
-  ADD PRIMARY KEY (`N_Quartos`);
+  ADD PRIMARY KEY (`N_Quarto`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
