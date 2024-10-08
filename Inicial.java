@@ -9,7 +9,7 @@ public class Inicial extends JFrame{
         super("Inicio");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
-        titulo = new JLabel("Bem-Vindo");
+        titulo = new JLabel("Bem-Vindo ao Banco de Quartos do hotel");
         btnI = new JButton("Inserir");
         btnC = new JButton("Consultar");
         btnEd = new JButton("Editar");
