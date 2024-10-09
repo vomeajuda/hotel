@@ -1,13 +1,12 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.sql.*;
+import java.util.*;
 
 public class Consulta2 extends JFrame{
     String[] colunas = {"N° Quarto", "Acomoda", "Varanda", "Micro-Ondas", "Frigobar", "TV", "CPF", "Ocupado"};
-    Object[][] dados = {
-        {0, 0, "Não", "Não", "Não", "Não", "0", "0"},
-    };
-    DefaultTableModel modelo = new DefaultTableModel(dados, colunas);
+    DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
     JTable tabela;
     JScrollPane scroll;
     JButton btnV;
@@ -29,10 +28,51 @@ public class Consulta2 extends JFrame{
 
         pack();
 
+        carregar();
+
         btnV.addActionListener((actionEvent) -> {
             this.dispose();
             Main.telaC1.setVisible(true);
         });
     }
-    
+
+
+    private void carregar() {
+        String url = "jdbc:mysql://localhost:3306/hotel_ds"; // Ajuste a URL conforme necessário
+        String user = "root";
+        String password = "";
+
+        Connection con = null;
+        Statement a = null;
+        ResultSet b = null;
+        try {
+            // Conecta ao banco de dados
+            con = DriverManager.getConnection(url, user, password);
+
+            // Cria uma consulta SQL
+            String query = "SELECT * FROM quartos";
+            a = con.createStatement();
+            b = a.executeQuery(query);
+
+            // Limpa o modelo antes de adicionar novos dados
+            modelo.setRowCount(0);
+
+            // Itera pelos resultados da consulta e preenche o modelo da JTable
+            while (b.next()) {
+                Vector<Object> linha = new Vector<>();
+                linha.add(b.getInt("numero_quarto"));
+                linha.add(b.getInt("acomoda"));
+                linha.add(b.getString("varanda"));
+                linha.add(b.getString("micro_ondas"));
+                linha.add(b.getString("frigobar"));
+                linha.add(b.getString("tv"));
+                linha.add(b.getString("cpf"));
+                linha.add(b.getString("ocupado"));
+
+                modelo.addRow(linha);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
