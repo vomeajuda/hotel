@@ -1,16 +1,19 @@
+package com.hotel.views;
+import com.hotel.Main;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import java.awt.*;
 
-public class Excluir extends JFrame{
+public class Consulta1 extends JFrame{
     private JTextField campo;
     private JLabel label;
-    private JButton btnE, btnV;
+    private JButton btnE, btnV, btnT;
     private JPanel panel;
 
-    public Excluir(){
-        super("Excluir");
+    public Consulta1(){
+        super("Consultar");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         label = new JLabel("N° Quarto");
@@ -20,9 +23,11 @@ public class Excluir extends JFrame{
         panel.setLayout(new FlowLayout(FlowLayout.CENTER));
         panel.setBorder(new EmptyBorder(2, 2, 2, 2));
 
-        btnE = new JButton("Excluir");
+        btnE = new JButton("Consultar");
+        btnT = new JButton("Todos");
         btnV = new JButton("Voltar");
         panel.add(btnE);
+        panel.add(btnT);
         panel.add(btnV);
 
         Container janela;
@@ -31,6 +36,11 @@ public class Excluir extends JFrame{
         janela.add(label, BorderLayout.NORTH);
         janela.add(campo, BorderLayout.CENTER);
         janela.add(panel, BorderLayout.SOUTH);
+
+        btnT.addActionListener((actionEvent) -> {
+            this.dispose();
+            Main.telaC2.setVisible(true);
+        });
 
         btnV.addActionListener((actionEvent) -> {
             this.dispose();

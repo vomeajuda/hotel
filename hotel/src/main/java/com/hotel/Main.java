@@ -1,3 +1,7 @@
+package com.hotel;
+
+import com.hotel.views.*;
+
 public class Main{
     public static Insert telaI = new Insert();
     public static Edit telaEd = new Edit();

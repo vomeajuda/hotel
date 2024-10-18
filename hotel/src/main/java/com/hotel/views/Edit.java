@@ -1,3 +1,6 @@
+package com.hotel.views;
+import com.hotel.Main;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;

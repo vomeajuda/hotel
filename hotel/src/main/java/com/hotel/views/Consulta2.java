@@ -1,3 +1,6 @@
+package com.hotel.views;
+import com.hotel.Main;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -38,7 +41,7 @@ public class Consulta2 extends JFrame{
 
 
     private void carregar() {
-        String url = "jdbc:mysql://localhost:3306/hotel_ds"; // Ajuste a URL conforme necessário
+        String url = "jdbc:mysql://localhost:3306/hotel_ds";
         String user = "root";
         String password = "";
 
@@ -46,18 +49,14 @@ public class Consulta2 extends JFrame{
         Statement a = null;
         ResultSet b = null;
         try {
-            // Conecta ao banco de dados
             con = DriverManager.getConnection(url, user, password);
 
-            // Cria uma consulta SQL
             String query = "SELECT * FROM quartos";
             a = con.createStatement();
             b = a.executeQuery(query);
 
-            // Limpa o modelo antes de adicionar novos dados
             modelo.setRowCount(0);
 
-            // Itera pelos resultados da consulta e preenche o modelo da JTable
             while (b.next()) {
                 Vector<Object> linha = new Vector<>();
                 linha.add(b.getInt("numero_quarto"));
