@@ -5,30 +5,30 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Inicial extends JFrame{
-    private JLabel titulo;
+    private JLabel titulo; //declaração de todos os objetos
     private JButton btnI, btnC, btnEd, btnEx, btnS;
 
     public Inicial(){
         super("Inicio");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
-        titulo = new JLabel("Bem-Vindo ao Banco de Quartos do hotel");
-        btnI = new JButton("Inserir");
-        btnC = new JButton("Consultar");
-        btnEd = new JButton("Editar");
-        btnEx = new JButton("Excluir");
-        btnS = new JButton("Sair");
+        titulo = new JLabel("Bem-Vindo ao Banco de Quartos do hotel"); //criação da label
+        btnI = new JButton("Inserir"); //criação do botão
+        btnC = new JButton("Consultar"); //criação do botão
+        btnEd = new JButton("Editar"); //criação do botão
+        btnEx = new JButton("Excluir"); //criação do botão
+        btnS = new JButton("Sair"); //criação do botão
 
-        Container janela;
+        Container janela; //criação da janela
         janela = getContentPane();
-        janela.setLayout(new GridLayout(6, 1));
+        janela.setLayout(new GridLayout(6, 1)); //layout da janela
 
-        janela.add(titulo);
-        janela.add(btnI);
-        janela.add(btnC);
-        janela.add(btnEd);
-        janela.add(btnEx);
-        janela.add(btnS);
+        janela.add(titulo); //adição da label
+        janela.add(btnI); //adição do botão
+        janela.add(btnC); //adição do botão
+        janela.add(btnEd); //adição do botão
+        janela.add(btnEx); //adição do botão
+        janela.add(btnS); //adição do botão
 
         btnI.addActionListener((actionEvent) -> {
             this.dispose();
@@ -38,7 +38,6 @@ public class Inicial extends JFrame{
         btnC.addActionListener((actionEvent) -> {
             this.dispose();
             Main.telaC1.setVisible(true);
-            Main.telaC1.setSize(300, 150);
         });
 
         btnEd.addActionListener((actionEvent) -> {
