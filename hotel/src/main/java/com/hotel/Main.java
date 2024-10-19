@@ -8,7 +8,6 @@ public class Main{
     public static Inicial telaP = new Inicial();
     public static Excluir telaEx = new Excluir();
     public static Consulta1 telaC1 = new Consulta1();
-    public static Consulta2 telaC2 = new Consulta2();
     public static void main(String[] args) {
         telaP.setVisible(true);
         telaP.setSize(300, 200);

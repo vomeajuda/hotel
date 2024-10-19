@@ -2,7 +2,6 @@ package com.hotel.views;
 
 import com.hotel.Main;
 import javax.swing.*;
-import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.sql.*;
@@ -56,16 +55,26 @@ public class Excluir extends JFrame{
 
         Connection con = null;
         PreparedStatement a = null;
+        PreparedStatement a2 = null;
+        ResultSet b = null;
 
         try{
         con = DriverManager.getConnection(url, user, password);
-        
-        String query = "DELETE FROM quartos WHERE N_Quarto = " + n;
-        a = con.prepareStatement(query);
-        a.executeUpdate();
 
-        JOptionPane.showMessageDialog(null,"Quarto excluido");
+        String query2 = "SELECT * FROM quartos WHERE N_Quarto = ?";
+        a2 = con.prepareStatement(query2);
+        a2.setString(1, n);
+        b = a2.executeQuery();
 
+        if (b.next()){
+            String query = "DELETE FROM quartos WHERE N_Quarto = " + n;
+            a = con.prepareStatement(query);
+            a.executeUpdate();
+    
+            JOptionPane.showMessageDialog(null,"Quarto excluido");
+        }else{
+            JOptionPane.showMessageDialog(null,"Quarto não existe");
+        }
         }catch (SQLException e){
             e.printStackTrace();
         }

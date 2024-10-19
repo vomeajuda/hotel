@@ -176,7 +176,7 @@ public class Edit extends JFrame{
                     radio2.setSelected(true); // Seleciona "Não" se não estiver ocupado
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Nenhum quarto encontrado com o número fornecido.");
+                JOptionPane.showMessageDialog(this, "Nenhum quarto encontrado com este número");
             }
         } catch (SQLException e){
             e.printStackTrace();
@@ -202,6 +202,11 @@ public class Edit extends JFrame{
 
         if (nq.isEmpty() || acomoda.isEmpty() || cpf.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
+            return;
+        }
+
+        if (fieldq.getText() != nq){
+            JOptionPane.showMessageDialog(null,"Não altere o número do quarto");
             return;
         }
 
