@@ -1,10 +1,11 @@
 package com.hotel.views;
+
 import com.hotel.Main;
-
 import javax.swing.*;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
-
 import java.awt.*;
+import java.sql.*;
 
 public class Excluir extends JFrame{
     private JTextField campo; //declaração de todos os objetos
@@ -35,9 +36,38 @@ public class Excluir extends JFrame{
         janela.add(campo, BorderLayout.CENTER); //adição de um field
         janela.add(panel, BorderLayout.SOUTH); //adição de painel
 
+        btnE.addActionListener((actionEvent) -> {
+            delete();
+            this.dispose();
+            Main.telaP.setVisible(true);
+        });
+
         btnV.addActionListener((actionEvent) -> {
             this.dispose();
             Main.telaP.setVisible(true);
         });
+    }
+
+    private void delete(){
+        String n = campo.getText();
+        String url = "jdbc:mysql://localhost:3306/hotel_ds";
+        String user = "root";
+        String password = "";
+
+        Connection con = null;
+        PreparedStatement a = null;
+
+        try{
+        con = DriverManager.getConnection(url, user, password);
+        
+        String query = "DELETE FROM quartos WHERE N_Quarto = " + n;
+        a = con.prepareStatement(query);
+        a.executeUpdate();
+
+        JOptionPane.showMessageDialog(null,"Quarto excluido");
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }

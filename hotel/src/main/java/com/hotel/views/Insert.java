@@ -117,6 +117,8 @@ public class Insert extends JFrame{
 
         btnE.addActionListener((actionEvent) -> {
             inserir();
+            this.dispose();
+            Main.telaP.setVisible(true);
         });
 
         btnV.addActionListener((actionEvent) -> {
@@ -158,6 +160,9 @@ public class Insert extends JFrame{
             a.setInt(8, ocupado);
 
             a.executeUpdate();
+
+            JOptionPane.showMessageDialog(null,"Inserido com sucesso");
+
     } catch (SQLException e) {
         e.printStackTrace();
     }
