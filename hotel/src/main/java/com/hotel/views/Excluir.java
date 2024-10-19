@@ -71,9 +71,9 @@ public class Excluir extends JFrame{
             a = con.prepareStatement(query);
             a.executeUpdate();
     
-            JOptionPane.showMessageDialog(null,"Quarto excluido");
+            JOptionPane.showMessageDialog(this,"Quarto excluido");
         }else{
-            JOptionPane.showMessageDialog(null,"Quarto não existe");
+            JOptionPane.showMessageDialog(this,"Quarto não existe");
         }
         }catch (SQLException e){
             e.printStackTrace();

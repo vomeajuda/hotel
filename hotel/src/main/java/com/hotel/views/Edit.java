@@ -206,7 +206,7 @@ public class Edit extends JFrame{
         }
 
         if (fieldq.getText() != nq){
-            JOptionPane.showMessageDialog(null,"Não altere o número do quarto");
+            JOptionPane.showMessageDialog(this,"Não altere o número do quarto");
             return;
         }
 
@@ -227,7 +227,7 @@ public class Edit extends JFrame{
 
             a.executeUpdate();
 
-            JOptionPane.showMessageDialog(null,"Editado com sucesso");
+            JOptionPane.showMessageDialog(this,"Editado com sucesso");
         }catch (SQLException e){
             e.printStackTrace();
         }

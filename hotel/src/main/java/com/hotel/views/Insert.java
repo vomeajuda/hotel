@@ -132,8 +132,17 @@ public class Insert extends JFrame{
         String user = "root";
         String password = ""; 
     
+        String nq = fieldq.getText(); // Obtém o número do quarto
+        String ac = fielda.getText(); // Obtém o número de pessoas que acomoda
+        String c = fieldcpf.getText();
+
         Connection con = null;
         PreparedStatement a = null;
+
+        if (nq.isEmpty() || ac.isEmpty() || c.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
+            return;
+        }
 
         try {
             con = DriverManager.getConnection(url, user, password);
@@ -161,7 +170,7 @@ public class Insert extends JFrame{
 
             a.executeUpdate();
 
-            JOptionPane.showMessageDialog(null,"Inserido com sucesso");
+            JOptionPane.showMessageDialog(this,"Inserido com sucesso");
 
     } catch (SQLException e) {
         e.printStackTrace();
