@@ -125,9 +125,12 @@ public class Edit extends JFrame{
         });
 
         btnE.addActionListener((actionEvent) -> {
-            Editar.editar(fieldq, fielda, fieldcpf, checkV, checkM, checkF, checkT, radio1, nqo, this);
+            int x;
+            x = Editar.editar(fieldq, fielda, fieldcpf, checkV, checkM, checkF, checkT, radio1, nqo, this);
+            if (x == 1){
             this.dispose();
             Main.telaP.setVisible(true);
+            }
         });
 
         btnV.addActionListener((actionEvent) -> {

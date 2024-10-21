@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class Inserir {
 
-    public static void inserir(JTextField fieldq, JTextField fielda, JTextField fieldcpf, JCheckBox checkV, JCheckBox checkM, JCheckBox checkF, JCheckBox checkT,JRadioButton radio1, JFrame frame) {
+    public static int inserir(JTextField fieldq, JTextField fielda, JTextField fieldcpf, JCheckBox checkV, JCheckBox checkM, JCheckBox checkF, JCheckBox checkT,JRadioButton radio1, JFrame frame) {
         String url = "jdbc:mysql://localhost:3306/hotel_ds";
         String user = "root";
         String password = "";
@@ -16,7 +16,12 @@ public class Inserir {
 
         if (nq.isEmpty() || ac.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Por favor, preencha todos os campos");
-            return;
+            return 0;
+        }
+
+        if (cpf.isEmpty() && radio1.isSelected()){
+            JOptionPane.showMessageDialog(frame,"Insira o CPF da reserva no caso de ocupado");
+            return 0;
         }
 
         try (Connection con = DriverManager.getConnection(url, user, password)) {
@@ -28,7 +33,7 @@ public class Inserir {
                 try (ResultSet rs = check.executeQuery()) {
                     if (rs.next() && rs.getInt(1) > 0) {
                         JOptionPane.showMessageDialog(frame, "Quarto já existe");
-                        return;
+                        return 0;
                     }
                 }
             }
@@ -55,9 +60,11 @@ public class Inserir {
                 a.executeUpdate();
 
                 JOptionPane.showMessageDialog(frame, "Inserido com sucesso");
+                return 1;
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            return 0;
         }
     }
 }

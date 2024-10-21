@@ -116,9 +116,12 @@ public class Insert extends JFrame{
         pack();
 
         btnE.addActionListener((actionEvent) -> {
-            Inserir.inserir(fieldq, fielda, fieldcpf, checkV, checkM, checkF, checkT, radio1, this);
+            int x;
+            x = Inserir.inserir(fieldq, fielda, fieldcpf, checkV, checkM, checkF, checkT, radio1, this);
+            if (x == 1){
             this.dispose();
             Main.telaP.setVisible(true);
+            }
         });
 
         btnV.addActionListener((actionEvent) -> {

@@ -36,10 +36,13 @@ public class Excluir extends JFrame{
         janela.add(panel, BorderLayout.SOUTH); //adição de painel
 
         btnE.addActionListener((actionEvent) -> {
+            int x;
             Delete delete = new Delete(campo.getText(), this);
-            delete.delete();
+            x = delete.delete();
+            if (x == 1){
             this.dispose();
             Main.telaP.setVisible(true);
+            }
         });
 
         btnV.addActionListener((actionEvent) -> {
