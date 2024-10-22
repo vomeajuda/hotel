@@ -1,5 +1,6 @@
 package com.hotel.views;
 import com.hotel.controllers.*;
+import com.hotel.models.Quarto;
 import com.hotel.Main;
 
 import javax.swing.*;
@@ -117,7 +118,8 @@ public class Insert extends JFrame{
 
         btnE.addActionListener((actionEvent) -> {
             int x;
-            x = Inserir.inserir(fieldq, fielda, fieldcpf, checkV, checkM, checkF, checkT, radio1, this);
+            Quarto q = new Quarto(Integer.parseInt(fieldq.getText()), Integer.parseInt(fielda.getText()), fieldcpf.getText(), checkV.isSelected() ? 1 : 0, checkM.isSelected() ? 1 : 0, checkF.isSelected() ? 1 : 0, checkT.isSelected() ? 1 : 0, radio1.isSelected() ? 1 : 0);
+            x = Inserir.inserir(q, radio1, this);
             if (x == 1){
             this.dispose();
             Main.telaP.setVisible(true);
