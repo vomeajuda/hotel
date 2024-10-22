@@ -23,6 +23,17 @@ public class Quarto {
         this.quarto = quarto;
     }
 
+    public Quarto(int quarto, int acomoda, String cpf, boolean varandac, boolean microondasc, boolean frigobarc, boolean tvc, boolean ocupadoc){
+        this.quarto = quarto;
+        this.acomoda = acomoda;
+        this.cpf = cpf;
+        this.varandac = varandac;
+        this.microondasc = microondasc;
+        this.frigobarc = frigobarc;
+        this.tvc = tvc;
+        this.ocupadoc = ocupadoc;
+    }
+
     public Quarto(int quarto, int acomoda, String cpf, int varanda, int microondas, int frigobar, int tv, int ocupado){
         this.quarto = quarto;
         this.acomoda = acomoda;
