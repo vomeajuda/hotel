@@ -4,11 +4,16 @@ public class Quarto {
     private int quarto;
     private int acomoda;
     private int varanda;
+    private boolean varandac;
     private int microondas;
+    private boolean microondasc;
     private int frigobar;
+    private boolean frigobarc;
     private int tv;
+    private boolean tvc;
     private String cpf;
     private int ocupado;
+    private boolean ocupadoc;
 
     public Quarto(){
 
@@ -53,12 +58,28 @@ public class Quarto {
         this.varanda = varanda;
     }
 
+    public boolean getVarandac() {
+        return varandac;
+    }
+
+    public void setVarandac(boolean varandac) {
+        this.varandac = varandac;
+    }
+
     public int getMicroondas() {
         return microondas;
     }
 
     public void setMicroondas(int microondas) {
         this.microondas = microondas;
+    }
+
+    public boolean getMicroondasc() {
+        return microondasc;
+    }
+
+    public void setMicroondasc(boolean microondasc) {
+        this.microondasc = microondasc;
     }
 
     public int getFrigobar() {
@@ -69,6 +90,14 @@ public class Quarto {
         this.frigobar = frigobar;
     }
 
+    public boolean getFrigobarc() {
+        return frigobarc;
+    }
+
+    public void setFrigobarc(boolean frigobarc) {
+        this.frigobarc = frigobarc;
+    }
+
     public int getTv() {
         return tv;
     }
@@ -77,12 +106,28 @@ public class Quarto {
         this.tv = tv;
     }
 
+    public boolean getTvc() {
+        return tvc;
+    }
+
+    public void setTvc(boolean tvc) {
+        this.tvc = tvc;
+    }
+
     public int getOcupado() {
         return ocupado;
     }
 
     public void setOcupado(int ocupado) {
         this.ocupado = ocupado;
+    }
+
+    public boolean getOcupadoc() {
+        return ocupadoc;
+    }
+
+    public void setOcupadoc(boolean ocupadoc) {
+        this.ocupadoc = ocupadoc;
     }
 
     public String getCPF() {

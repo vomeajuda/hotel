@@ -9,13 +9,15 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Edit extends JFrame{
-    private JLabel labelq, labelcpf, labela, labelt, labelo; //declaração de todos os objetos
-    private JTextField fieldq, fielda, fieldcpf;
-    private JCheckBox checkV, checkM, checkF, checkT;
-    private JRadioButton radio1, radio2;
-    private ButtonGroup grupo;
-    private JButton btnE, btnV, btnC;
-    private JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9;
+    private static JLabel labelq, labelcpf, labela, labelt, labelo; //declaração de todos os objetos
+    private static JTextField fieldq;
+    private static JTextField fielda;
+    private static JTextField fieldcpf;
+    private static JCheckBox checkV, checkM, checkF, checkT;
+    private static JRadioButton radio1, radio2;
+    private static ButtonGroup grupo;
+    private static JButton btnE, btnV, btnC;
+    private static JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9;
     String nqo;
 
     public Edit(){
@@ -144,5 +146,21 @@ public class Edit extends JFrame{
             this.dispose();
             Main.telaP.setVisible(true);
         });
+    }
+
+    public static void alterar(Quarto q2){
+        fielda.setText(String.valueOf(q2.getAcomoda()));
+        fieldcpf.setText(q2.getCPF());
+        checkV.setSelected(q2.getVarandac());
+        checkM.setSelected(q2.getMicroondasc());
+        checkF.setSelected(q2.getFrigobarc());
+        checkT.setSelected(q2.getTvc());
+        if (q2.getOcupadoc() == true){
+            radio1.setSelected(true);
+            radio2.setSelected(false);
+        }else{
+            radio1.setSelected(false);
+            radio2.setSelected(true);
+        }
     }
 }
