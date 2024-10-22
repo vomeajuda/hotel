@@ -1,19 +1,16 @@
 package com.hotel.controllers;
 
 import javax.swing.*;
+
+import com.hotel.models.Quarto;
+
 import java.sql.*;
 
 public class Consultar {
-    public static void consultar(JTextField fieldq, JTextField fielda, JTextField fieldcpf, JCheckBox checkV, JCheckBox checkM, JCheckBox checkF, JCheckBox checkT, JRadioButton radio1, JRadioButton radio2, JFrame frame) {
+    public static void consultar(Quarto q, JFrame frame) {
         String url = "jdbc:mysql://localhost:3306/hotel_ds";
         String user = "root";
         String password = "";
-
-        String n = fieldq.getText();
-        if (n.isEmpty()) {
-            JOptionPane.showMessageDialog(frame, "Por favor, insira o número do quarto.");
-            return;
-        }
 
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             String query = "SELECT acomoda, varanda, microondas, frigobar, tv, cpf, ocupado FROM quartos WHERE N_Quarto = ?";

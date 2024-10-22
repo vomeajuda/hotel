@@ -2,6 +2,7 @@ package com.hotel.views;
 import com.hotel.Main;
 import com.hotel.controllers.Consultar;
 import com.hotel.controllers.Editar;
+import com.hotel.models.Quarto;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -121,7 +122,13 @@ public class Edit extends JFrame{
 
         btnC.addActionListener((actionEvent) -> {
             nqo = fieldq.getText();
-            Consultar.consultar(fieldq, fielda, fieldcpf, checkV, checkM, checkF, checkT, radio1, radio2, this);
+            Quarto q1 = new Quarto();
+            try{
+                q1 = new Quarto(Integer.parseInt(fieldq.getText()=="" ? "0" : fieldq.getText()));
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Por favor, preencha o campo");
+            }
+            Consultar.consultar(q1, this);
         });
 
         btnE.addActionListener((actionEvent) -> {
