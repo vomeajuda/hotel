@@ -1,5 +1,6 @@
 package com.hotel.views;
 import com.hotel.controllers.*;
+import com.hotel.models.Quarto;
 import com.hotel.Main;
 
 import javax.swing.*;
@@ -37,8 +38,14 @@ public class Excluir extends JFrame{
 
         btnE.addActionListener((actionEvent) -> {
             int x;
-            Delete delete = new Delete(campo.getText(), this);
-            x = delete.delete();
+            Quarto q = new Quarto();
+            try{
+            q = new Quarto(Integer.parseInt(campo.getText()));
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
+                x = 0;
+            }
+            x = Delete.delete(q, this);
             if (x == 1){
             this.dispose();
             Main.telaP.setVisible(true);

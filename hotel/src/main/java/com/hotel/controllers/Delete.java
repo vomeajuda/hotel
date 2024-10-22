@@ -1,18 +1,14 @@
 package com.hotel.controllers;
 
 import javax.swing.*;
+
+import com.hotel.models.Quarto;
+
 import java.sql.*;
 
 public class Delete {
-    private String numeroQuarto;
-    private JFrame frame;
 
-    public Delete(String numeroQuarto, JFrame frame) {
-        this.numeroQuarto = numeroQuarto;
-        this.frame = frame;
-    }
-
-    public int delete() {
+    public static int delete(Quarto q, JFrame frame) {
         String url = "jdbc:mysql://localhost:3306/hotel_ds";
         String user = "root";
         String password = "";
@@ -21,11 +17,11 @@ public class Delete {
              PreparedStatement a = con.prepareStatement("SELECT * FROM quartos WHERE N_Quarto = ?");
              PreparedStatement b = con.prepareStatement("DELETE FROM quartos WHERE N_Quarto = ?")) {
 
-            a.setString(1, numeroQuarto);
+            a.setInt(1, q.getQuarto());
             ResultSet rs = a.executeQuery();
 
             if (rs.next()) {
-                b.setString(1, numeroQuarto);
+                b.setInt(1, q.getQuarto());
                 b.executeUpdate();
                 JOptionPane.showMessageDialog(frame, "Quarto excluído com sucesso");
                 return 1;

@@ -1,5 +1,6 @@
 package com.hotel.views;
 import com.hotel.controllers.*;
+import com.hotel.models.Quarto;
 import com.hotel.Main;
 
 import javax.swing.*;
@@ -12,10 +13,11 @@ public class Consulta1 extends JFrame{
     private JLabel label;
     private JButton btnE, btnV, btnT;
     private JPanel panel, panel2;
-    String[] colunas = {"N° Quarto", "Acomoda", "Varanda", "Micro-Ondas", "Frigobar", "TV", "CPF", "Ocupado"};
-    DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
+    static String[] colunas = {"N° Quarto", "Acomoda", "Varanda", "Micro-Ondas", "Frigobar", "TV", "CPF", "Ocupado"};
+    static DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
     JTable tabela;
     JScrollPane scroll;
+    int x;
 
     public Consulta1(){
         super("Consultar");
@@ -53,18 +55,24 @@ public class Consulta1 extends JFrame{
         pack();
 
         btnE.addActionListener((actionEvent) -> {
-            Carregar carregar = new Carregar(modelo, campo.getText());
-            carregar.carregar();
+            modelo.setRowCount(0);
+            Quarto q = new Quarto();
+            q.setQuarto(Integer.parseInt(campo.getText()));
+            Carregar.carregar(q);
         });
 
         btnT.addActionListener((actionEvent) -> {
-            Todos todos = new Todos(modelo);
-            todos.todos();
+            modelo.setRowCount(0);
+            Todos.todos();
         });
 
         btnV.addActionListener((actionEvent) -> {
             this.dispose();
             Main.telaP.setVisible(true);
         });
+    }
+
+    public static void atualizar(Quarto q1){
+        modelo.addRow(q1.getLinha());
     }
 }

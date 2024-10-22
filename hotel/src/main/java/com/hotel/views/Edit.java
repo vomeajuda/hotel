@@ -2,20 +2,23 @@ package com.hotel.views;
 import com.hotel.Main;
 import com.hotel.controllers.Consultar;
 import com.hotel.controllers.Editar;
+import com.hotel.models.Quarto;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Edit extends JFrame{
-    private JLabel labelq, labelcpf, labela, labelt, labelo; //declaração de todos os objetos
-    private JTextField fieldq, fielda, fieldcpf;
-    private JCheckBox checkV, checkM, checkF, checkT;
-    private JRadioButton radio1, radio2;
-    private ButtonGroup grupo;
-    private JButton btnE, btnV, btnC;
-    private JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9;
-    String nqo;
+    private static JLabel labelq, labelcpf, labela, labelt, labelo; //declaração de todos os objetos
+    private static JTextField fieldq;
+    private static JTextField fielda;
+    private static JTextField fieldcpf;
+    private static JCheckBox checkV, checkM, checkF, checkT;
+    private static JRadioButton radio1, radio2;
+    private static ButtonGroup grupo;
+    private static JButton btnE, btnV, btnC;
+    private static JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9;
+    int nqo;
 
     public Edit(){
         super("Editar");
@@ -120,13 +123,26 @@ public class Edit extends JFrame{
         pack();
 
         btnC.addActionListener((actionEvent) -> {
-            nqo = fieldq.getText();
-            Consultar.consultar(fieldq, fielda, fieldcpf, checkV, checkM, checkF, checkT, radio1, radio2, this);
+            nqo = Integer.parseInt(fieldq.getText());
+            Quarto q1 = new Quarto();
+            try{
+                q1 = new Quarto(Integer.parseInt(fieldq.getText()=="" ? "0" : fieldq.getText()));
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(this, "Por favor, preencha o campo");
+            }
+            Consultar.consultar(q1, this);
         });
 
         btnE.addActionListener((actionEvent) -> {
+            Quarto q2 = new Quarto();
             int x;
-            x = Editar.editar(fieldq, fielda, fieldcpf, checkV, checkM, checkF, checkT, radio1, nqo, this);
+            try{
+            q2 = new Quarto(Integer.parseInt(fieldq.getText()), Integer.parseInt(fielda.getText()), fieldcpf.getText(), checkV.isSelected(), checkM.isSelected(), checkF.isSelected(), checkT.isSelected(), radio1.isSelected());
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
+                x = 0;
+            }
+            x = Editar.editar(q2, nqo, this);
             if (x == 1){
             this.dispose();
             Main.telaP.setVisible(true);
@@ -137,5 +153,21 @@ public class Edit extends JFrame{
             this.dispose();
             Main.telaP.setVisible(true);
         });
+    }
+
+    public static void alterar(Quarto q3){
+        fielda.setText(String.valueOf(q3.getAcomoda()));
+        fieldcpf.setText(q3.getCPF());
+        checkV.setSelected(q3.getVarandac());
+        checkM.setSelected(q3.getMicroondasc());
+        checkF.setSelected(q3.getFrigobarc());
+        checkT.setSelected(q3.getTvc());
+        if (q3.getOcupadoc() == true){
+            radio1.setSelected(true);
+            radio2.setSelected(false);
+        }else{
+            radio1.setSelected(false);
+            radio2.setSelected(true);
+        }
     }
 }
