@@ -13,11 +13,6 @@ public class Inserir {
         String user = "root";
         String password = "";
 
-        if (q.getQuarto() == 0 || q.getAcomoda() == 0) {
-            JOptionPane.showMessageDialog(frame, "Por favor, preencha todos os campos");
-            return 0;
-        }
-
         if (q.getCPF().isEmpty() && radio1.isSelected()){
             JOptionPane.showMessageDialog(frame,"Insira o CPF da reserva no caso de ocupado");
             return 0;
