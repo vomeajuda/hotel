@@ -1,5 +1,7 @@
 package com.hotel.models;
 
+import java.util.Vector;
+
 public class Quarto {
     private int quarto;
     private int acomoda;
@@ -14,6 +16,7 @@ public class Quarto {
     private String cpf;
     private int ocupado;
     private boolean ocupadoc;
+    private Vector<Object> linha = new Vector<>();
 
     public Quarto(){
 
@@ -147,5 +150,13 @@ public class Quarto {
 
     public void setCPF(String cpf) {
         this.cpf = cpf;
+    }
+
+    public Vector<Object> getLinha(){
+        return linha;
+    }
+
+    public void setLinha(Vector<Object> linha){
+        this.linha = linha;
     }
 }

@@ -38,7 +38,13 @@ public class Excluir extends JFrame{
 
         btnE.addActionListener((actionEvent) -> {
             int x;
-            Quarto q = new Quarto(Integer.parseInt(campo.getText()));
+            Quarto q = new Quarto();
+            try{
+            q = new Quarto(Integer.parseInt(campo.getText()));
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
+                x = 0;
+            }
             x = Delete.delete(q, this);
             if (x == 1){
             this.dispose();

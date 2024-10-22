@@ -1,30 +1,24 @@
 package com.hotel.controllers;
 
-import javax.swing.table.DefaultTableModel;
+import com.hotel.models.Quarto;
+import com.hotel.views.Consulta1;
+
 import java.sql.*;
 import java.util.Vector;
 
 public class Carregar {
-    private DefaultTableModel modelo;
-    private String numeroQuarto;
 
-    public Carregar(DefaultTableModel modelo, String numeroQuarto) {
-        this.modelo = modelo;
-        this.numeroQuarto = numeroQuarto;
-    }
-
-    public void carregar() {
+    public static void carregar(Quarto q){
         String url = "jdbc:mysql://localhost:3306/hotel_ds";
         String user = "root";
         String password = "";
 
         try (Connection con = DriverManager.getConnection(url, user, password);
-             Statement stmt = con.createStatement()) {
+             Statement a = con.createStatement()) {
 
-            String query = "SELECT * FROM quartos WHERE N_Quarto = " + numeroQuarto;
-            ResultSet rs = stmt.executeQuery(query);
+            String query = "SELECT * FROM quartos WHERE N_Quarto = " + q.getQuarto();
+            ResultSet rs = a.executeQuery(query);
 
-            modelo.setRowCount(0);
 
             while (rs.next()) {
                 Vector<Object> linha = new Vector<>();
@@ -37,7 +31,9 @@ public class Carregar {
                 linha.add(rs.getString("cpf"));
                 linha.add(rs.getString("ocupado"));
 
-                modelo.addRow(linha);
+                Quarto q1 = new Quarto();
+                q1.setLinha(linha);
+                Consulta1.atualizar(q1);
             }
         } catch (SQLException e) {
             e.printStackTrace();

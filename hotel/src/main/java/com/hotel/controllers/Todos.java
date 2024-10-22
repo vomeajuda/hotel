@@ -1,17 +1,14 @@
 package com.hotel.controllers;
 
-import javax.swing.table.DefaultTableModel;
+import com.hotel.models.Quarto;
+import com.hotel.views.Consulta1;
+
 import java.sql.*;
 import java.util.Vector;
 
 public class Todos {
-    private DefaultTableModel modelo;
 
-    public Todos(DefaultTableModel modelo) {
-        this.modelo = modelo;
-    }
-
-    public void todos() {
+    public static void todos() {
         String url = "jdbc:mysql://localhost:3306/hotel_ds";
         String user = "root";
         String password = "";
@@ -21,8 +18,6 @@ public class Todos {
 
             String query = "SELECT * FROM quartos";
             ResultSet rs = stmt.executeQuery(query);
-
-            modelo.setRowCount(0);
 
             while (rs.next()) {
                 Vector<Object> linha = new Vector<>();
@@ -35,7 +30,9 @@ public class Todos {
                 linha.add(rs.getString("cpf"));
                 linha.add(rs.getString("ocupado"));
 
-                modelo.addRow(linha);
+                Quarto q1 = new Quarto();
+                q1.setLinha(linha);
+                Consulta1.atualizar(q1);
             }
         } catch (SQLException e) {
             e.printStackTrace();

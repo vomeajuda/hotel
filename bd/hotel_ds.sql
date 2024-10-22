@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22-Out-2024 às 19:04
--- Versão do servidor: 10.4.27-MariaDB
--- versão do PHP: 8.2.0
+-- Generation Time: Oct 23, 2024 at 01:07 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `hotel_ds`
+-- Database: `hotel_ds`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `quartos`
+-- Table structure for table `quartos`
 --
 
 CREATE TABLE `quartos` (
@@ -39,15 +39,14 @@ CREATE TABLE `quartos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `quartos`
+-- Dumping data for table `quartos`
 --
 
 INSERT INTO `quartos` (`N_Quarto`, `acomoda`, `varanda`, `microondas`, `frigobar`, `tv`, `cpf`, `ocupado`) VALUES
-(101, 2, 1, 1, 1, 1, NULL, 0),
-(102, 2, 0, 1, 1, 0, '98765432100', 0);
+(102, 4, 0, 0, 1, 1, '54355686841', 1);
 
 --
--- Acionadores `quartos`
+-- Triggers `quartos`
 --
 DELIMITER $$
 CREATE TRIGGER `update_cpf` BEFORE UPDATE ON `quartos` FOR EACH ROW BEGIN
@@ -59,11 +58,11 @@ $$
 DELIMITER ;
 
 --
--- Índices para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices para tabela `quartos`
+-- Indexes for table `quartos`
 --
 ALTER TABLE `quartos`
   ADD PRIMARY KEY (`N_Quarto`);
