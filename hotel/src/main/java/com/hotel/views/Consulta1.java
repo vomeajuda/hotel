@@ -1,12 +1,11 @@
 package com.hotel.views;
+import com.hotel.controllers.*;
 import com.hotel.Main;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.sql.*;
-import java.util.*;
 
 public class Consulta1 extends JFrame{
     private JTextArea campo; //declaração de todos os objetos
@@ -54,89 +53,18 @@ public class Consulta1 extends JFrame{
         pack();
 
         btnE.addActionListener((actionEvent) -> {
-            carregar();
+            Carregar carregar = new Carregar(modelo, campo.getText());
+            carregar.carregar();
         });
 
         btnT.addActionListener((actionEvent) -> {
-            todos();
+            Todos todos = new Todos(modelo);
+            todos.todos();
         });
 
         btnV.addActionListener((actionEvent) -> {
             this.dispose();
             Main.telaP.setVisible(true);
         });
-    }
-
-    private void carregar(){
-        String n = campo.getText();
-        String url = "jdbc:mysql://localhost:3306/hotel_ds";
-        String user = "root";
-        String password = "";
-
-        Connection con = null;
-        Statement a = null;
-        ResultSet b = null;
-
-        try{
-            con = DriverManager.getConnection(url, user, password);
-
-            String query = "SELECT * FROM quartos WHERE N_Quarto = " + n;
-            a = con.createStatement();
-            b = a.executeQuery(query);
-
-            modelo.setRowCount(0);
-
-            while (b.next()) {
-                Vector<Object> linha = new Vector<>();
-                linha.add(b.getInt("N_Quarto"));
-                linha.add(b.getInt("acomoda"));
-                linha.add(b.getString("varanda"));
-                linha.add(b.getString("microondas"));
-                linha.add(b.getString("frigobar"));
-                linha.add(b.getString("tv"));
-                linha.add(b.getString("cpf"));
-                linha.add(b.getString("ocupado"));
-
-                modelo.addRow(linha);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void todos(){
-        String url = "jdbc:mysql://localhost:3306/hotel_ds";
-        String user = "root";
-        String password = "";
-
-        Connection con = null;
-        Statement a = null;
-        ResultSet b = null;
-
-        try{
-            con = DriverManager.getConnection(url, user, password);
-
-            String query = "SELECT * FROM quartos";
-            a = con.createStatement();
-            b = a.executeQuery(query);
-
-            modelo.setRowCount(0);
-
-            while (b.next()) {
-                Vector<Object> linha = new Vector<>();
-                linha.add(b.getInt("N_Quarto"));
-                linha.add(b.getInt("acomoda"));
-                linha.add(b.getString("varanda"));
-                linha.add(b.getString("microondas"));
-                linha.add(b.getString("frigobar"));
-                linha.add(b.getString("tv"));
-                linha.add(b.getString("cpf"));
-                linha.add(b.getString("ocupado"));
-
-                modelo.addRow(linha);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }

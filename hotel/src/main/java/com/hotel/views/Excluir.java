@@ -1,10 +1,10 @@
 package com.hotel.views;
-
+import com.hotel.controllers.*;
 import com.hotel.Main;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.sql.*;
 
 public class Excluir extends JFrame{
     private JTextField campo; //declaração de todos os objetos
@@ -36,47 +36,18 @@ public class Excluir extends JFrame{
         janela.add(panel, BorderLayout.SOUTH); //adição de painel
 
         btnE.addActionListener((actionEvent) -> {
-            delete();
+            int x;
+            Delete delete = new Delete(campo.getText(), this);
+            x = delete.delete();
+            if (x == 1){
             this.dispose();
             Main.telaP.setVisible(true);
+            }
         });
 
         btnV.addActionListener((actionEvent) -> {
             this.dispose();
             Main.telaP.setVisible(true);
         });
-    }
-
-    private void delete(){
-        String n = campo.getText();
-        String url = "jdbc:mysql://localhost:3306/hotel_ds";
-        String user = "root";
-        String password = "";
-
-        Connection con = null;
-        PreparedStatement a = null;
-        PreparedStatement a2 = null;
-        ResultSet b = null;
-
-        try{
-        con = DriverManager.getConnection(url, user, password);
-
-        String query2 = "SELECT * FROM quartos WHERE N_Quarto = ?";
-        a2 = con.prepareStatement(query2);
-        a2.setString(1, n);
-        b = a2.executeQuery();
-
-        if (b.next()){
-            String query = "DELETE FROM quartos WHERE N_Quarto = " + n;
-            a = con.prepareStatement(query);
-            a.executeUpdate();
-    
-            JOptionPane.showMessageDialog(this,"Quarto excluido");
-        }else{
-            JOptionPane.showMessageDialog(this,"Quarto não existe");
-        }
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
     }
 }

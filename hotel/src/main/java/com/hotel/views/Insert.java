@@ -1,10 +1,10 @@
 package com.hotel.views;
+import com.hotel.controllers.*;
 import com.hotel.Main;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.sql.*;
 
 public class Insert extends JFrame{
     private JLabel labelq, labelcpf, labela, labelt, labelo; //declaração de todos os objetos
@@ -33,7 +33,7 @@ public class Insert extends JFrame{
         panel2.setLayout(new GridLayout(2, 1)); //configuração de layout do painel
         panel2.setBorder(new EmptyBorder(1, 1, 1, 1)); //configuração da borda do painel (tipo um padding)
 
-        labela = new JLabel("Acomoda"); //criação da label
+        labela = new JLabel("Acomoda (n° pessoas)"); //criação da label
         fielda = new JTextField(20); //criação de um field
 
         panel2.add(labela);
@@ -116,9 +116,12 @@ public class Insert extends JFrame{
         pack();
 
         btnE.addActionListener((actionEvent) -> {
-            inserir();
+            int x;
+            x = Inserir.inserir(fieldq, fielda, fieldcpf, checkV, checkM, checkF, checkT, radio1, this);
+            if (x == 1){
             this.dispose();
             Main.telaP.setVisible(true);
+            }
         });
 
         btnV.addActionListener((actionEvent) -> {
@@ -126,54 +129,4 @@ public class Insert extends JFrame{
             Main.telaP.setVisible(true);
         });
     }
-
-    private void inserir(){
-        String url = "jdbc:mysql://localhost:3306/hotel_ds";
-        String user = "root";
-        String password = ""; 
-    
-        String nq = fieldq.getText(); // Obtém o número do quarto
-        String ac = fielda.getText(); // Obtém o número de pessoas que acomoda
-        String c = fieldcpf.getText();
-
-        Connection con = null;
-        PreparedStatement a = null;
-
-        if (nq.isEmpty() || ac.isEmpty() || c.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
-            return;
-        }
-
-        try {
-            con = DriverManager.getConnection(url, user, password);
-            
-            String query = "INSERT INTO quartos (N_Quarto, acomoda, varanda, microondas, frigobar, tv, cpf, ocupado) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-            a = con.prepareStatement(query);
-
-            int quarto = Integer.parseInt(fieldq.getText());  //Número do quarto
-            int acomoda = Integer.parseInt(fielda.getText());  //Quantas pessoas acomoda
-            String cpf = fieldcpf.getText();  //CPF
-            int varanda = checkV.isSelected() ? 1 : 0; //tem varanda
-            int microondas = checkM.isSelected() ? 1 : 0; //tem micro-ondas
-            int frigobar = checkF.isSelected() ? 1 : 0; //tem frigobar
-            int tv = checkT.isSelected() ? 1 : 0; //tem tv
-            int ocupado = radio1.isSelected() ? 1 : 0; //esta ocupado ou nao
-
-            a.setInt(1, quarto);
-            a.setInt(2, acomoda);
-            a.setInt(3, varanda);
-            a.setInt(4, microondas);
-            a.setInt(5, frigobar);
-            a.setInt(6, tv);
-            a.setString(7, cpf);
-            a.setInt(8, ocupado);
-
-            a.executeUpdate();
-
-            JOptionPane.showMessageDialog(this,"Inserido com sucesso");
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-}
 }
