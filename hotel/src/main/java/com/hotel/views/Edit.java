@@ -37,7 +37,7 @@ public class Edit extends JFrame{
         panel2.setLayout(new GridLayout(2, 1)); //configuração de layout do painel
         panel2.setBorder(new EmptyBorder(1, 1, 1, 1)); //configuração da borda do painel (tipo um padding)
 
-        labela = new JLabel("Acomoda"); //criação da label
+        labela = new JLabel("Acomoda (n° pessoas)"); //criação da label
         fielda = new JTextField(20); //criação do field
 
         panel2.add(labela); //adição da label
