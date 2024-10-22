@@ -14,6 +14,10 @@ public class Quarto {
 
     }
 
+    public Quarto(int quarto){
+        this.quarto = quarto;
+    }
+
     public Quarto(int quarto, int acomoda, String cpf, int varanda, int microondas, int frigobar, int tv, int ocupado){
         this.quarto = quarto;
         this.acomoda = acomoda;
