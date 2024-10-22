@@ -1,11 +1,11 @@
 package com.hotel.views;
 import com.hotel.Main;
+import com.hotel.controllers.Consultar;
+import com.hotel.controllers.Editar;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JOptionPane;
 import java.awt.*;
-import java.sql.*;
 
 public class Edit extends JFrame{
     private JLabel labelq, labelcpf, labela, labelt, labelo; //declaração de todos os objetos
@@ -15,6 +15,7 @@ public class Edit extends JFrame{
     private ButtonGroup grupo;
     private JButton btnE, btnV, btnC;
     private JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9;
+    String nqo;
 
     public Edit(){
         super("Editar");
@@ -36,7 +37,7 @@ public class Edit extends JFrame{
         panel2.setLayout(new GridLayout(2, 1)); //configuração de layout do painel
         panel2.setBorder(new EmptyBorder(1, 1, 1, 1)); //configuração da borda do painel (tipo um padding)
 
-        labela = new JLabel("Acomoda"); //criação da label
+        labela = new JLabel("Acomoda (n° pessoas)"); //criação da label
         fielda = new JTextField(20); //criação do field
 
         panel2.add(labela); //adição da label
@@ -119,117 +120,22 @@ public class Edit extends JFrame{
         pack();
 
         btnC.addActionListener((actionEvent) -> {
-            consultar();
+            nqo = fieldq.getText();
+            Consultar.consultar(fieldq, fielda, fieldcpf, checkV, checkM, checkF, checkT, radio1, radio2, this);
         });
 
         btnE.addActionListener((actionEvent) -> {
-            editar();
+            int x;
+            x = Editar.editar(fieldq, fielda, fieldcpf, checkV, checkM, checkF, checkT, radio1, nqo, this);
+            if (x == 1){
             this.dispose();
             Main.telaP.setVisible(true);
+            }
         });
 
         btnV.addActionListener((actionEvent) -> {
             this.dispose();
             Main.telaP.setVisible(true);
         });
-    }
-
-    private void consultar(){
-        String url = "jdbc:mysql://localhost:3306/hotel_ds";
-        String user = "root";
-        String password = "";
-
-        String n = fieldq.getText();
-        Connection con = null;
-        PreparedStatement a = null;
-        ResultSet b = null;
-
-        if (n.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, insira o número do quarto.");
-        }
-
-        try{
-            con = DriverManager.getConnection(url, user, password);
-
-            String query = "SELECT acomoda, varanda, microondas, frigobar, tv, cpf, ocupado FROM quartos WHERE N_Quarto = ?";
-            a = con.prepareStatement(query);
-            a.setString(1, n);
-
-            b = a.executeQuery();
-
-            if (b.next()) {
-                // Preencher os campos com os dados retornados
-                fielda.setText(String.valueOf(b.getInt("acomoda")));
-                fieldcpf.setText(b.getString("cpf"));
-                
-                // Preencher checkboxes
-                checkV.setSelected(b.getBoolean("varanda"));
-                checkM.setSelected(b.getBoolean("microondas"));
-                checkF.setSelected(b.getBoolean("frigobar"));
-                checkT.setSelected(b.getBoolean("tv"));
-    
-                // Preencher radio buttons
-                boolean ocupado = b.getBoolean("ocupado");
-                if (ocupado) {
-                    radio1.setSelected(true); // Seleciona "Sim" se estiver ocupado
-                } else {
-                    radio2.setSelected(true); // Seleciona "Não" se não estiver ocupado
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Nenhum quarto encontrado com este número");
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
-
-    private void editar(){
-        String url = "jdbc:mysql://localhost:3306/hotel_ds";
-        String user = "root";
-        String password = "";
-
-        String nq = fieldq.getText(); // Obtém o número do quarto
-        String acomoda = fielda.getText(); // Obtém o número de pessoas que acomoda
-        String cpf = fieldcpf.getText(); // Obtém o CPF
-        boolean varanda = checkV.isSelected(); // Verifica se a opção Varanda está selecionada
-        boolean microondas = checkM.isSelected(); // Verifica se a opção Micro-Ondas está selecionada
-        boolean frigobar = checkF.isSelected(); // Verifica se a opção Frigobar está selecionada
-        boolean tv = checkT.isSelected(); // Verifica se a opção Televisão está selecionada
-        boolean ocupado = radio1.isSelected(); // Verifica se o quarto está ocupado
-
-        Connection con = null;
-        PreparedStatement a = null;
-
-        if (nq.isEmpty() || acomoda.isEmpty() || cpf.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
-            return;
-        }
-
-        if (fieldq.getText() != nq){
-            JOptionPane.showMessageDialog(this,"Não altere o número do quarto");
-            return;
-        }
-
-        try{
-            con = DriverManager.getConnection(url, user, password);
-
-            String query = "UPDATE quartos SET acomoda = ?, cpf = ?, varanda = ?, microondas = ?, frigobar = ?, tv = ?, ocupado = ? WHERE N_Quarto = ?";
-            a = con.prepareStatement(query);
-
-            a.setInt(1, Integer.parseInt(acomoda));
-            a.setString(2, cpf);
-            a.setBoolean(3, varanda);
-            a.setBoolean(4, microondas);
-            a.setBoolean(5, frigobar);
-            a.setBoolean(6, tv);
-            a.setBoolean(7, ocupado);
-            a.setString(8, nq);
-
-            a.executeUpdate();
-
-            JOptionPane.showMessageDialog(this,"Editado com sucesso");
-        }catch (SQLException e){
-            e.printStackTrace();
-        }
     }
 }
