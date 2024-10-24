@@ -123,14 +123,18 @@ public class Edit extends JFrame{
         pack();
 
         btnC.addActionListener((actionEvent) -> {
-            nqo = Integer.parseInt(fieldq.getText());
-            Quarto q1 = new Quarto();
             try{
-                q1 = new Quarto(Integer.parseInt(fieldq.getText()=="" ? "0" : fieldq.getText()));
+            nqo = Integer.parseInt(fieldq.getText());
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Por favor, preencha o campo");
             }
-            Consultar.consultar(q1, this);
+            Quarto q1 = new Quarto();
+            try{
+                q1 = new Quarto(Integer.parseInt(fieldq.getText()=="" ? "0" : fieldq.getText()));
+                Consultar.consultar(q1, this);
+            }catch(Exception e){
+                
+            }
         });
 
         btnE.addActionListener((actionEvent) -> {
@@ -138,11 +142,11 @@ public class Edit extends JFrame{
             int x;
             try{
             q2 = new Quarto(Integer.parseInt(fieldq.getText()), Integer.parseInt(fielda.getText()), fieldcpf.getText(), checkV.isSelected(), checkM.isSelected(), checkF.isSelected(), checkT.isSelected(), radio1.isSelected());
+            x = Editar.editar(q2, nqo, this);
             }catch (Exception e){
                 JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
                 x = 0;
             }
-            x = Editar.editar(q2, nqo, this);
             if (x == 1){
             this.dispose();
             Main.telaP.setVisible(true);

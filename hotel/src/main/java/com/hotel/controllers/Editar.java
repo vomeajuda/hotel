@@ -20,10 +20,13 @@ public class Editar {
         boolean frigobar = q.getFrigobarc();
         boolean tv = q.getTvc();
         boolean ocupado = q.getOcupadoc();
-
+        
+        try{
         if (cpf.isEmpty() && ocupado == true){
             JOptionPane.showMessageDialog(frame,"Insira o CPF da reserva no caso de ocupado");
             return 0;
+        }}catch(Exception e){
+            
         }
 
         if (nq != nqo) {

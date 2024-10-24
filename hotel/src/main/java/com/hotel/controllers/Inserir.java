@@ -13,9 +13,12 @@ public class Inserir {
         String user = "root";
         String password = "";
 
+        try{
         if (q.getCPF().isEmpty() && radio1.isSelected()){
             JOptionPane.showMessageDialog(frame,"Insira o CPF da reserva no caso de ocupado");
             return 0;
+        }}catch (Exception e){
+            
         }
 
         try (Connection con = DriverManager.getConnection(url, user, password)) {

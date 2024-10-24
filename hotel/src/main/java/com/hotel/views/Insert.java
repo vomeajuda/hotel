@@ -121,11 +121,11 @@ public class Insert extends JFrame{
             Quarto q = new Quarto();
             try{
             q = new Quarto(Integer.parseInt(fieldq.getText()=="" ? "0" : fieldq.getText()), Integer.parseInt(fielda.getText()=="" ? "0" : fielda.getText()), fieldcpf.getText(), checkV.isSelected() ? 1 : 0, checkM.isSelected() ? 1 : 0, checkF.isSelected() ? 1 : 0, checkT.isSelected() ? 1 : 0, radio1.isSelected() ? 1 : 0);
+            x = Inserir.inserir(q, radio1, this);
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
                 x = 0;
             }
-            x = Inserir.inserir(q, radio1, this);
             if (x == 1){
             this.dispose();
             Main.telaP.setVisible(true);
