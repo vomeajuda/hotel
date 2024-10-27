@@ -14,7 +14,7 @@ public class Todos {
         String password = "";
 
         try (Connection con = DriverManager.getConnection(url, user, password);
-             Statement stmt = con.createStatement()) {
+            Statement stmt = con.createStatement()) {
 
             String query = "SELECT * FROM quartos";
             ResultSet rs = stmt.executeQuery(query);
@@ -23,12 +23,32 @@ public class Todos {
                 Vector<Object> linha = new Vector<>();
                 linha.add(rs.getInt("N_Quarto"));
                 linha.add(rs.getInt("acomoda"));
-                linha.add(rs.getString("varanda"));
-                linha.add(rs.getString("microondas"));
-                linha.add(rs.getString("frigobar"));
-                linha.add(rs.getString("tv"));
+                if (rs.getInt("varanda") == 1){
+                    linha.add("Sim");
+                }else {
+                    linha.add("Não");
+                }
+                if (rs.getInt("microondas") == 1){
+                    linha.add("Sim");
+                }else {
+                    linha.add("Não");
+                }
+                if (rs.getInt("frigobar") == 1){
+                    linha.add("Sim");
+                }else {
+                    linha.add("Não");
+                }
+                if (rs.getInt("tv") == 1){
+                    linha.add("Sim");
+                }else {
+                    linha.add("Não");
+                }
                 linha.add(rs.getString("cpf"));
-                linha.add(rs.getString("ocupado"));
+                if (rs.getInt("ocupado") == 1){
+                    linha.add("Sim");
+                }else {
+                    linha.add("Não");
+                }
 
                 Quarto q1 = new Quarto();
                 q1.setLinha(linha);

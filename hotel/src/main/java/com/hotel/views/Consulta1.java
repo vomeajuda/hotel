@@ -75,4 +75,8 @@ public class Consulta1 extends JFrame{
     public static void atualizar(Quarto q1){
         modelo.addRow(q1.getLinha());
     }
+
+    public static void reset(){
+        modelo.setRowCount(0);
+    }
 }

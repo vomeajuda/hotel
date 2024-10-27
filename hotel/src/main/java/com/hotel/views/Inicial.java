@@ -37,6 +37,7 @@ public class Inicial extends JFrame{
 
         btnC.addActionListener((actionEvent) -> {
             this.dispose();
+            Consulta1.reset();
             Main.telaC1.setVisible(true);
         });
 

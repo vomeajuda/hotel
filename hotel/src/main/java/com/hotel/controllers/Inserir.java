@@ -8,17 +8,27 @@ import java.sql.*;
 
 public class Inserir {
 
-    public static int inserir(Quarto q, JRadioButton radio1, JFrame frame) {
+    public static int inserir(Quarto q, JFrame frame) {
         String url = "jdbc:mysql://localhost:3306/hotel_ds";
         String user = "root";
         String password = "";
 
+        boolean ocupado = q.getOcupadoc();
+
         try{
-        if (q.getCPF().isEmpty() && radio1.isSelected()){
+        if (q.getCPF().isEmpty() && ocupado == true){
             JOptionPane.showMessageDialog(frame,"Insira o CPF da reserva no caso de ocupado");
             return 0;
         }}catch (Exception e){
             
+        }
+        
+        try{
+        if (q.getCPF().length() >= 1 && ocupado == false){
+                JOptionPane.showMessageDialog(frame,"Não insira um cpf se não estiver ocupado");
+                return 0;
+        }}catch (Exception e){
+                
         }
 
         try (Connection con = DriverManager.getConnection(url, user, password)) {

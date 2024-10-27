@@ -29,6 +29,14 @@ public class Editar {
             
         }
 
+        try{
+            if (q.getCPF().length() >= 1 && ocupado == false){
+                    JOptionPane.showMessageDialog(frame,"Não insira um cpf se não estiver ocupado");
+                    return 0;
+            }}catch (Exception e){
+                    
+            }
+
         if (nq != nqo) {
             JOptionPane.showMessageDialog(frame, "Não altere o número do quarto");
             return 0;
