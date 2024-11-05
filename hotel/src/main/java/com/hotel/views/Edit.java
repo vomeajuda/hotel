@@ -119,6 +119,7 @@ public class Edit extends JFrame{
         janela.add(panel9, BorderLayout.SOUTH); //adição de painel
 
         pack();
+        reset();
 
         btnC.addActionListener((actionEvent) -> {
             try{
@@ -171,5 +172,14 @@ public class Edit extends JFrame{
             radio1.setSelected(false);
             radio2.setSelected(true);
         }
+    }
+
+    public static void reset(){
+        fielda.setText("");
+        fieldcpf.setText("");
+        checkV.setSelected(false);
+        checkM.setSelected(false);
+        checkF.setSelected(false);
+        checkT.setSelected(false);
     }
 }

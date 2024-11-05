@@ -32,6 +32,7 @@ public class Inicial extends JFrame{
 
         btnI.addActionListener((actionEvent) -> {
             this.dispose();
+            Insert.reset();
             Main.telaI.setVisible(true);
         });
 
@@ -43,11 +44,13 @@ public class Inicial extends JFrame{
 
         btnEd.addActionListener((actionEvent) -> {
             this.dispose();
+            Edit.reset();
             Main.telaEd.setVisible(true);
         });
 
         btnEx.addActionListener((actionEvent) -> {
             this.dispose();
+            Excluir.reset();
             Main.telaEx.setVisible(true);
             Main.telaEx.setSize(200, 150);
         });

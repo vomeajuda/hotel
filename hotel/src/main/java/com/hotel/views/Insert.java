@@ -9,9 +9,11 @@ import java.awt.*;
 
 public class Insert extends JFrame{
     private JLabel labelq, labelcpf, labela, labelo; //declaração de todos os objetos
-    private JTextField fieldq, fielda, fieldcpf;
-    private JCheckBox checkV, checkM, checkF, checkT;
-    private JRadioButton radio1, radio2;
+    private static JTextField fieldq;
+    private static JTextField fielda;
+    private static JTextField fieldcpf;
+    private static JCheckBox checkV, checkM, checkF, checkT;
+    private static JRadioButton radio1, radio2;
     private ButtonGroup grupo;
     private JButton btnE, btnV;
     private JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9;
@@ -112,6 +114,7 @@ public class Insert extends JFrame{
         janela.add(panel8, BorderLayout.EAST); //adição de painel
         janela.add(panel9, BorderLayout.SOUTH); //adição de painel
 
+        reset();
         pack();
 
         btnE.addActionListener((actionEvent) -> {
@@ -134,5 +137,17 @@ public class Insert extends JFrame{
             this.dispose();
             Main.telaP.setVisible(true);
         });
+    }
+
+    public static void reset(){
+        fieldq.setText("");
+        fielda.setText("");
+        fieldcpf.setText("");
+        checkV.setSelected(false);
+        checkM.setSelected(false);
+        checkF.setSelected(false);
+        checkT.setSelected(false);
+        radio1.setSelected(false);
+        radio2.setSelected(true);
     }
 }
