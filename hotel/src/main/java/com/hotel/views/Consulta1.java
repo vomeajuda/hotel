@@ -57,8 +57,12 @@ public class Consulta1 extends JFrame{
         btnE.addActionListener((actionEvent) -> {
             modelo.setRowCount(0);
             Quarto q = new Quarto();
-            q.setQuarto(Integer.parseInt(campo.getText()));
-            Carregar.carregar(q);
+            try{
+                q.setQuarto(Integer.parseInt(campo.getText()));
+                Carregar.carregar(q);
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(this, "Digite o número do quarto");
+            }
         });
 
         btnT.addActionListener((actionEvent) -> {

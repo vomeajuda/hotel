@@ -8,7 +8,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Insert extends JFrame{
-    private JLabel labelq, labelcpf, labela, labelt, labelo; //declaração de todos os objetos
+    private JLabel labelq, labelcpf, labela, labelo; //declaração de todos os objetos
     private JTextField fieldq, fielda, fieldcpf;
     private JCheckBox checkV, checkM, checkF, checkT;
     private JRadioButton radio1, radio2;
@@ -24,7 +24,7 @@ public class Insert extends JFrame{
         panel1.setLayout(new GridLayout(2, 1)); //configuração de layout do painel
         panel1.setBorder(new EmptyBorder(1, 1, 1, 1)); //configuração da borda do painel (tipo um padding)
 
-        labelq = new JLabel("N° Quarto"); //criação da label
+        labelq = new JLabel("N° do Quarto"); //criação da label
         fieldq = new JTextField(20); //criação de um field
 
         panel1.add(labelq);
@@ -82,16 +82,14 @@ public class Insert extends JFrame{
         panel7.add(panel6, BorderLayout.SOUTH);
 
         panel8 = new JPanel(); //criação de painel
-        panel8.setLayout(new GridLayout(5, 1)); //configuração de layout do painel
+        panel8.setLayout(new GridLayout(4, 1)); //configuração de layout do painel
         panel8.setBorder(new EmptyBorder(1, 1, 1, 1)); //configuração da borda do painel (tipo um padding)
 
-        labelt = new JLabel("Tem"); //criação da label
         checkV = new JCheckBox("Varanda"); //adição de uma checkBox
         checkM = new JCheckBox("Micro-Ondas"); //adição de uma checkBox
         checkF = new JCheckBox("Frigobar"); //adição de uma checkBox
         checkT = new JCheckBox("Televisão"); //adição de uma checkBox
 
-        panel8.add(labelt); //adição da label
         panel8.add(checkV); //adição de uma checkBox
         panel8.add(checkM); //adição de uma checkBox
         panel8.add(checkF); //adição de uma checkBox
