@@ -8,7 +8,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Excluir extends JFrame{
-    private static JTextField campo; //declaração de todos os objetos
+    @SuppressWarnings("rawtypes")
+    private static JComboBox combo; //declaração de todos os objetos
         private JLabel label;
         private JButton btnE, btnV;
         private JPanel panel;
@@ -18,7 +19,7 @@ public class Excluir extends JFrame{
             setDefaultCloseOperation(EXIT_ON_CLOSE);
     
             label = new JLabel("N° Quarto"); //criação da label
-            campo = new JTextField(20); //criação de um field
+            combo = new JComboBox<>(); //criação de um field
     
             panel = new JPanel(); //criação de painel
             panel.setLayout(new FlowLayout(FlowLayout.CENTER)); //configuração de layout do painel
@@ -33,16 +34,14 @@ public class Excluir extends JFrame{
             janela = getContentPane();
             janela.setLayout(new BorderLayout()); //layout da janela
             janela.add(label, BorderLayout.NORTH); //adição da label
-            janela.add(campo, BorderLayout.CENTER); //adição de um field
+            janela.add(combo, BorderLayout.CENTER); //adição de um field
             janela.add(panel, BorderLayout.SOUTH); //adição de painel
-
-            reset();
     
             btnE.addActionListener((actionEvent) -> {
                 int x;
                 Quarto q = new Quarto();
                 try{
-                q = new Quarto(Integer.parseInt(campo.getText()));
+                q = new Quarto(Integer.parseInt(combo.getSelectedItem().toString()));
                 }catch (Exception e){
                     JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
                     x = 0;
@@ -60,7 +59,8 @@ public class Excluir extends JFrame{
             });
         }
     
-        public static void reset(){
-            campo.setText("");
-    }
+        @SuppressWarnings("unchecked")
+        public static void fill(Quarto q1){
+            combo.addItem(q1.getQuartoc());
+        }
 }

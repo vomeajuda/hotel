@@ -7,7 +7,7 @@ import com.hotel.models.Quarto;
 import java.sql.*;
 
 public class Editar {
-    public static int editar(Quarto q, int nqo, JFrame frame) {
+    public static int editar(Quarto q, JFrame frame) {
         String url = "jdbc:mysql://localhost:3306/hotel_ds";
         String user = "root";
         String password = "";
@@ -27,11 +27,6 @@ public class Editar {
             return 0;
         }}catch(Exception e){
             
-        }
-
-        if (nq != nqo) {
-            JOptionPane.showMessageDialog(frame, "Não altere o número do quarto");
-            return 0;
         }
 
         try (Connection con = DriverManager.getConnection(url, user, password)) {

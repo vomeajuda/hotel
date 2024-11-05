@@ -19,7 +19,6 @@ public class Edit extends JFrame{
     private static ButtonGroup grupo;
     private static JButton btnE, btnV, btnC;
     private static JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9;
-    int nqo;
 
     public Edit(){
         super("Editar");
@@ -123,11 +122,6 @@ public class Edit extends JFrame{
         reset();
 
         btnC.addActionListener((actionEvent) -> {
-            try{
-            nqo = Integer.parseInt(combo.getSelectedItem().toString());
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this, "Por favor, preencha o campo");
-            }
             Quarto q1 = new Quarto();
             try{
                 q1 = new Quarto(Integer.parseInt(combo.getSelectedItem().toString()=="" ? "0" : combo.getSelectedItem().toString()));
@@ -142,7 +136,7 @@ public class Edit extends JFrame{
             int x;
             try{
             q2 = new Quarto(Integer.parseInt(combo.getSelectedItem().toString()), Integer.parseInt(fielda.getText()), fieldcpf.getText(), checkV.isSelected(), checkM.isSelected(), checkF.isSelected(), checkT.isSelected(), radio1.isSelected());
-            x = Editar.editar(q2, nqo, this);
+            x = Editar.editar(q2, this);
             }catch (Exception e){
                 JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
                 x = 0;

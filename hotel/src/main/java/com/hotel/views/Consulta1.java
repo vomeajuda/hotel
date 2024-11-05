@@ -66,7 +66,7 @@ public class Consulta1 extends JFrame{
                 q.setQuarto(Integer.parseInt(combo.getSelectedItem().toString()));
                 Carregar.carregar(q);
             }catch (Exception e){
-                JOptionPane.showMessageDialog(this, "Digite o número do quarto");
+                
             }
         });
 
