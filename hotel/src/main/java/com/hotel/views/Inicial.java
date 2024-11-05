@@ -1,5 +1,8 @@
 package com.hotel.views;
 import com.hotel.Main;
+import com.hotel.controllers.NQuartosC;
+import com.hotel.controllers.NQuartosE;
+import com.hotel.controllers.NQuartosEx;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,22 +35,27 @@ public class Inicial extends JFrame{
 
         btnI.addActionListener((actionEvent) -> {
             this.dispose();
+            Insert.reset();
             Main.telaI.setVisible(true);
         });
 
         btnC.addActionListener((actionEvent) -> {
             this.dispose();
             Consulta1.reset();
+            NQuartosC.nquartos();
             Main.telaC1.setVisible(true);
         });
 
         btnEd.addActionListener((actionEvent) -> {
             this.dispose();
+            Edit.reset();
+            NQuartosE.nquartos();
             Main.telaEd.setVisible(true);
         });
 
         btnEx.addActionListener((actionEvent) -> {
             this.dispose();
+            NQuartosEx.nquartos();
             Main.telaEx.setVisible(true);
             Main.telaEx.setSize(200, 150);
         });

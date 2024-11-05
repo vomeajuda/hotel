@@ -9,8 +9,9 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class Edit extends JFrame{
-    private static JLabel labelq, labelcpf, labela, labelt, labelo; //declaração de todos os objetos
-    private static JTextField fieldq;
+    private static JLabel labelq, labelcpf, labela, labelo; //declaração de todos os objetos
+    @SuppressWarnings("rawtypes")
+    private static JComboBox combo;
     private static JTextField fielda;
     private static JTextField fieldcpf;
     private static JCheckBox checkV, checkM, checkF, checkT;
@@ -18,7 +19,6 @@ public class Edit extends JFrame{
     private static ButtonGroup grupo;
     private static JButton btnE, btnV, btnC;
     private static JPanel panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9;
-    int nqo;
 
     public Edit(){
         super("Editar");
@@ -28,12 +28,12 @@ public class Edit extends JFrame{
         panel1.setLayout(new GridLayout(3, 1)); //configuração de layout do painel
         panel1.setBorder(new EmptyBorder(1, 1, 1, 1)); //configuração da borda do painel (tipo um padding)
 
-        labelq = new JLabel("N° Quarto"); //criação da label
-        fieldq = new JTextField(20); //criação de um field
+        labelq = new JLabel("N° do Quarto"); //criação da label
+        combo = new JComboBox<>(); //criação de um field
         btnC = new JButton("Consultar"); //criação de um botão
 
         panel1.add(labelq); //adição da label
-        panel1.add(fieldq); //adição do field
+        panel1.add(combo); //adição do field
         panel1.add(btnC);
 
         panel2 = new JPanel(); //criação de painel
@@ -88,16 +88,14 @@ public class Edit extends JFrame{
         panel7.add(panel6, BorderLayout.SOUTH); //adição de painel
 
         panel8 = new JPanel(); //criação de painel
-        panel8.setLayout(new GridLayout(5, 1)); //configuração de layout do painel
+        panel8.setLayout(new GridLayout(4, 1)); //configuração de layout do painel
         panel8.setBorder(new EmptyBorder(1, 1, 1, 1)); //configuração da borda do painel (tipo um padding)
 
-        labelt = new JLabel("Tem"); //criação da label
         checkV = new JCheckBox("Varanda"); //criação de uma checkBox
         checkM = new JCheckBox("Micro-Ondas"); //criação de uma checkBox
         checkF = new JCheckBox("Frigobar"); //criação de uma checkBox
         checkT = new JCheckBox("Televisão"); //criação de uma checkBox
 
-        panel8.add(labelt); //adição da label
         panel8.add(checkV); //adição de uma checkBox
         panel8.add(checkM); //adição de uma checkBox
         panel8.add(checkF); //adição de uma checkBox
@@ -121,16 +119,12 @@ public class Edit extends JFrame{
         janela.add(panel9, BorderLayout.SOUTH); //adição de painel
 
         pack();
+        reset();
 
         btnC.addActionListener((actionEvent) -> {
-            try{
-            nqo = Integer.parseInt(fieldq.getText());
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(this, "Por favor, preencha o campo");
-            }
             Quarto q1 = new Quarto();
             try{
-                q1 = new Quarto(Integer.parseInt(fieldq.getText()=="" ? "0" : fieldq.getText()));
+                q1 = new Quarto(Integer.parseInt(combo.getSelectedItem().toString()=="" ? "0" : combo.getSelectedItem().toString()));
                 Consultar.consultar(q1, this);
             }catch(Exception e){
                 
@@ -141,8 +135,8 @@ public class Edit extends JFrame{
             Quarto q2 = new Quarto();
             int x;
             try{
-            q2 = new Quarto(Integer.parseInt(fieldq.getText()), Integer.parseInt(fielda.getText()), fieldcpf.getText(), checkV.isSelected(), checkM.isSelected(), checkF.isSelected(), checkT.isSelected(), radio1.isSelected());
-            x = Editar.editar(q2, nqo, this);
+            q2 = new Quarto(Integer.parseInt(combo.getSelectedItem().toString()), Integer.parseInt(fielda.getText()), fieldcpf.getText(), checkV.isSelected(), checkM.isSelected(), checkF.isSelected(), checkT.isSelected(), radio1.isSelected());
+            x = Editar.editar(q2, this);
             }catch (Exception e){
                 JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
                 x = 0;
@@ -173,5 +167,19 @@ public class Edit extends JFrame{
             radio1.setSelected(false);
             radio2.setSelected(true);
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void fill(Quarto q4){
+        combo.addItem(q4.getQuartoc());
+    }
+
+    public static void reset(){
+        fielda.setText("");
+        fieldcpf.setText("");
+        checkV.setSelected(false);
+        checkM.setSelected(false);
+        checkF.setSelected(false);
+        checkT.setSelected(false);
     }
 }

@@ -16,6 +16,8 @@ public class Quarto {
     private String cpf;
     private int ocupado;
     private boolean ocupadoc;
+    private String quartoc;
+
     private Vector<Object> linha = new Vector<>();
 
     public Quarto(){
@@ -158,5 +160,13 @@ public class Quarto {
 
     public void setLinha(Vector<Object> linha){
         this.linha = linha;
+    }
+
+    public String getQuartoc() {
+        return quartoc;
+    }
+
+    public void setQuartoc(String quartoc) {
+        this.quartoc = quartoc;
     }
 }

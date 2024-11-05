@@ -49,12 +49,12 @@ public class Inserir {
 
                 a.setInt(1, q.getQuarto());
                 a.setInt(2, q.getAcomoda());
-                a.setInt(3, q.getVaranda());
-                a.setInt(4, q.getMicroondas());
-                a.setInt(5, q.getFrigobar());
-                a.setInt(6, q.getTv());
+                a.setBoolean(3, q.getVarandac());
+                a.setBoolean(4, q.getMicroondasc());
+                a.setBoolean(5, q.getFrigobarc());
+                a.setBoolean(6, q.getTvc());
                 a.setString(7, q.getCPF());
-                a.setInt(8, q.getOcupado());
+                a.setBoolean(8, q.getOcupadoc());
 
                 a.executeUpdate();
 
