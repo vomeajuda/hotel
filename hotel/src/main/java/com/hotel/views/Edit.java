@@ -10,7 +10,8 @@ import java.awt.*;
 
 public class Edit extends JFrame{
     private static JLabel labelq, labelcpf, labela, labelo; //declaração de todos os objetos
-    private static JTextField fieldq;
+    @SuppressWarnings("rawtypes")
+    private static JComboBox combo;
     private static JTextField fielda;
     private static JTextField fieldcpf;
     private static JCheckBox checkV, checkM, checkF, checkT;
@@ -29,11 +30,11 @@ public class Edit extends JFrame{
         panel1.setBorder(new EmptyBorder(1, 1, 1, 1)); //configuração da borda do painel (tipo um padding)
 
         labelq = new JLabel("N° do Quarto"); //criação da label
-        fieldq = new JTextField(20); //criação de um field
+        combo = new JComboBox<>(); //criação de um field
         btnC = new JButton("Consultar"); //criação de um botão
 
         panel1.add(labelq); //adição da label
-        panel1.add(fieldq); //adição do field
+        panel1.add(combo); //adição do field
         panel1.add(btnC);
 
         panel2 = new JPanel(); //criação de painel
@@ -123,13 +124,13 @@ public class Edit extends JFrame{
 
         btnC.addActionListener((actionEvent) -> {
             try{
-            nqo = Integer.parseInt(fieldq.getText());
+            nqo = Integer.parseInt(combo.getSelectedItem().toString());
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Por favor, preencha o campo");
             }
             Quarto q1 = new Quarto();
             try{
-                q1 = new Quarto(Integer.parseInt(fieldq.getText()=="" ? "0" : fieldq.getText()));
+                q1 = new Quarto(Integer.parseInt(combo.getSelectedItem().toString()=="" ? "0" : combo.getSelectedItem().toString()));
                 Consultar.consultar(q1, this);
             }catch(Exception e){
                 
@@ -140,7 +141,7 @@ public class Edit extends JFrame{
             Quarto q2 = new Quarto();
             int x;
             try{
-            q2 = new Quarto(Integer.parseInt(fieldq.getText()), Integer.parseInt(fielda.getText()), fieldcpf.getText(), checkV.isSelected(), checkM.isSelected(), checkF.isSelected(), checkT.isSelected(), radio1.isSelected());
+            q2 = new Quarto(Integer.parseInt(combo.getSelectedItem().toString()), Integer.parseInt(fielda.getText()), fieldcpf.getText(), checkV.isSelected(), checkM.isSelected(), checkF.isSelected(), checkT.isSelected(), radio1.isSelected());
             x = Editar.editar(q2, nqo, this);
             }catch (Exception e){
                 JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
@@ -174,8 +175,12 @@ public class Edit extends JFrame{
         }
     }
 
+    @SuppressWarnings("unchecked")
+    public static void fill(Quarto q4){
+        combo.addItem(q4.getQuartoc());
+    }
+
     public static void reset(){
-        fieldq.setText("");
         fielda.setText("");
         fieldcpf.setText("");
         checkV.setSelected(false);

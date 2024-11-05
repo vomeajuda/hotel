@@ -9,10 +9,11 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
 public class Consulta1 extends JFrame{
-    private JTextArea campo; //declaração de todos os objetos
+    @SuppressWarnings("rawtypes")
+    private static JComboBox combo; //declaração de todos os objetos
     private JLabel label;
     private JButton btnE, btnV, btnT;
-    private JPanel panel, panel2;
+    private JPanel panel, panel2, panel3;
     static String[] colunas = {"N° Quarto", "Acomoda", "Varanda", "Micro-Ondas", "Frigobar", "TV", "CPF", "Ocupado"};
     static DefaultTableModel modelo = new DefaultTableModel(colunas, 0);
     JTable tabela;
@@ -24,7 +25,7 @@ public class Consulta1 extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
         label = new JLabel("N° Quarto"); //criação da label
-        campo = new JTextArea(); //criação de um field
+        combo = new JComboBox<>(); //criação de um field
 
         panel = new JPanel(); //criação de painel
         panel.setLayout(new FlowLayout(FlowLayout.CENTER)); //configuração de layout do painel
@@ -37,10 +38,14 @@ public class Consulta1 extends JFrame{
         panel.add(btnT); //adição do botão
         panel.add(btnV); //adição do botão
 
+        panel3 = new JPanel();
+        panel3.setLayout(new GridLayout(2, 1));
+        panel3.add(label);
+        panel3.add(combo);
+
         panel2 = new JPanel(); //criação de painel
         panel2.setLayout(new BorderLayout()); //configuração de layout do painel
-        panel2.add(label, BorderLayout.NORTH); //adição da label
-        panel2.add(campo, BorderLayout.CENTER); //adição de um field
+        panel2.add(panel3, BorderLayout.NORTH); //adição de painel
         panel2.add(panel, BorderLayout.SOUTH); //adição de painel
 
         JTable tabela = new JTable(modelo); //criação da tabela
@@ -58,7 +63,7 @@ public class Consulta1 extends JFrame{
             modelo.setRowCount(0);
             Quarto q = new Quarto();
             try{
-                q.setQuarto(Integer.parseInt(campo.getText()));
+                q.setQuarto(Integer.parseInt(combo.getSelectedItem().toString()));
                 Carregar.carregar(q);
             }catch (Exception e){
                 JOptionPane.showMessageDialog(this, "Digite o número do quarto");
@@ -78,6 +83,11 @@ public class Consulta1 extends JFrame{
 
     public static void atualizar(Quarto q1){
         modelo.addRow(q1.getLinha());
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void fill(Quarto q2){
+        combo.addItem(q2.getQuartoc());
     }
 
     public static void reset(){
