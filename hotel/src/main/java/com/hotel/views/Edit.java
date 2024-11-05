@@ -175,6 +175,7 @@ public class Edit extends JFrame{
     }
 
     public static void reset(){
+        fieldq.setText("");
         fielda.setText("");
         fieldcpf.setText("");
         checkV.setSelected(false);
