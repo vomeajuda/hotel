@@ -53,6 +53,7 @@ public class Inicial extends JFrame{
 
         btnEx.addActionListener((actionEvent) -> {
             this.dispose();
+            Excluir.reset();
             NQuartos.nquartos(3);
             Main.telaEx.setVisible(true);
             Main.telaEx.setSize(200, 150);

@@ -63,4 +63,8 @@ public class Excluir extends JFrame{
         public static void fill(Quarto q1){
             combo.addItem(q1.getQuartoc());
         }
+
+        public static void reset(){
+            combo.removeAllItems();
+        }
 }

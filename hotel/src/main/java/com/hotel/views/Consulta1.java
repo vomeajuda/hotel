@@ -91,6 +91,7 @@ public class Consulta1 extends JFrame{
     }
 
     public static void reset(){
+        combo.removeAllItems();
         modelo.setRowCount(0);
     }
 }
