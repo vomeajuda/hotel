@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2024 at 01:07 AM
+-- Generation Time: Nov 20, 2024 at 01:53 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,7 +43,11 @@ CREATE TABLE `quartos` (
 --
 
 INSERT INTO `quartos` (`N_Quarto`, `acomoda`, `varanda`, `microondas`, `frigobar`, `tv`, `cpf`, `ocupado`) VALUES
-(102, 4, 0, 0, 1, 1, '54355686841', 1);
+(101, 4, 1, 0, 1, 1, NULL, 0),
+(102, 4, 0, 0, 1, 1, '54355686841', 1),
+(103, 2, 1, 1, 0, 0, NULL, 0),
+(104, 5, 0, 0, 0, 1, '', 0),
+(201, 4, 0, 1, 1, 0, '', 0);
 
 --
 -- Triggers `quartos`
