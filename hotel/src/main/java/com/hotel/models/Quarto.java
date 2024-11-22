@@ -2,8 +2,8 @@ package com.hotel.models;
 
 import java.util.Vector;
 
-public class Quarto {
-    private int quarto;
+public class Quarto { //criação do modelo de quarto
+    private int quarto; //declaração de todos os atributos
     private int acomoda;
     private int varanda;
     private boolean varandac;
@@ -20,15 +20,15 @@ public class Quarto {
 
     private Vector<Object> linha = new Vector<>();
 
-    public Quarto(){
+    public Quarto(){ //construtor vazio
 
     }
 
-    public Quarto(int quarto){
+    public Quarto(int quarto){ //construtor para passar apenas o numero do quarto
         this.quarto = quarto;
     }
 
-    public Quarto(int quarto, int acomoda, String cpf, boolean varandac, boolean microondasc, boolean frigobarc, boolean tvc, boolean ocupadoc){
+    public Quarto(int quarto, int acomoda, String cpf, boolean varandac, boolean microondasc, boolean frigobarc, boolean tvc, boolean ocupadoc){ //construtor com todas as informações do quarto em bool
         this.quarto = quarto;
         this.acomoda = acomoda;
         this.cpf = cpf;
@@ -39,7 +39,7 @@ public class Quarto {
         this.ocupadoc = ocupadoc;
     }
 
-    public Quarto(int quarto, int acomoda, String cpf, int varanda, int microondas, int frigobar, int tv, int ocupado){
+    public Quarto(int quarto, int acomoda, String cpf, int varanda, int microondas, int frigobar, int tv, int ocupado){ //construtor com todas as informações do quarto em int
         this.quarto = quarto;
         this.acomoda = acomoda;
         this.cpf = cpf;
@@ -49,6 +49,8 @@ public class Quarto {
         this.tv = tv;
         this.ocupado = ocupado;
     }
+
+    //daqui pra baixo getters e setters de todos os atributos
 
     public int getQuarto() {
         return quarto;
