@@ -31,36 +31,36 @@ public class Inicial extends JFrame{
         janela.add(btnEx); //adição do botão
         janela.add(btnS); //adição do botão
 
-        btnI.addActionListener((actionEvent) -> {
-            this.dispose();
-            Insert.reset();
-            Main.telaI.setVisible(true);
+        btnI.addActionListener((actionEvent) -> { //ação do btnI
+            this.dispose(); //fecha a tela
+            Insert.reset(); //Limpa a tela
+            Main.telaI.setVisible(true); //Abre a tela de inserir
         });
 
-        btnC.addActionListener((actionEvent) -> {
-            this.dispose();
-            Consulta1.reset();
-            NQuartos.nquartos(2);
-            Main.telaC1.setVisible(true);
+        btnC.addActionListener((actionEvent) -> { //ação do btnC
+            this.dispose(); //fecha a tela
+            Consulta1.reset(); //limpa a tela
+            NQuartos.nquartos(2); //preenche a combobox da pag
+            Main.telaC1.setVisible(true); //abre a tela de consulta
         });
 
-        btnEd.addActionListener((actionEvent) -> {
-            this.dispose();
-            Edit.reset();
-            NQuartos.nquartos(1);
-            Main.telaEd.setVisible(true);
+        btnEd.addActionListener((actionEvent) -> { //ação do btnEd
+            this.dispose(); //fecha a tela
+            Edit.reset(); //limpa a tela
+            NQuartos.nquartos(1); //preenche a combobox da pag
+            Main.telaEd.setVisible(true); //abre a tela de Edição
         });
 
-        btnEx.addActionListener((actionEvent) -> {
-            this.dispose();
-            Excluir.reset();
-            NQuartos.nquartos(3);
-            Main.telaEx.setVisible(true);
-            Main.telaEx.setSize(200, 150);
+        btnEx.addActionListener((actionEvent) -> { //ação do btnEx
+            this.dispose(); //fecha a tela
+            Excluir.reset(); //limpa a tela
+            NQuartos.nquartos(3); //preenche a combobox da pag
+            Main.telaEx.setVisible(true); //abre a tela de exclusão
+            Main.telaEx.setSize(200, 150); //define o tamanho
         });
 
-        btnS.addActionListener((actionEvent) -> {
-            System.exit(0);
+        btnS.addActionListener((actionEvent) -> { //ação do btnS
+            System.exit(0); //fecha o programa
         });
     }
 }

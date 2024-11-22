@@ -117,29 +117,29 @@ public class Insert extends JFrame{
         reset();
         pack();
 
-        btnE.addActionListener((actionEvent) -> {
+        btnE.addActionListener((actionEvent) -> { //ação do btnE
             int x;
-            Quarto q = new Quarto();
+            Quarto q = new Quarto(); ////Roda o construtor de quarto
             try{
-            q = new Quarto(Integer.parseInt(fieldq.getText()), Integer.parseInt(fielda.getText()), fieldcpf.getText(), checkV.isSelected(), checkM.isSelected(), checkF.isSelected(), checkT.isSelected(), radio1.isSelected());
-            x = Inserir.inserir(q, this);
+            q = new Quarto(Integer.parseInt(fieldq.getText()), Integer.parseInt(fielda.getText()), fieldcpf.getText(), checkV.isSelected(), checkM.isSelected(), checkF.isSelected(), checkT.isSelected(), radio1.isSelected()); //Roda o construtor de quarto de instrução
+            x = Inserir.inserir(q, this); //Roda a inserção de um quarto
             }catch(Exception e){
                 JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
                 x = 0;
             }
             if (x == 1){
-            this.dispose();
-            Main.telaP.setVisible(true);
+            this.dispose(); //fecha a tela
+            Main.telaP.setVisible(true); //abre a tela principal
             }
         });
 
-        btnV.addActionListener((actionEvent) -> {
-            this.dispose();
-            Main.telaP.setVisible(true);
+        btnV.addActionListener((actionEvent) -> { //ação do btnV
+            this.dispose(); //fecha a tela
+            Main.telaP.setVisible(true); //abre a tela principal
         });
     }
 
-    public static void reset(){
+    public static void reset(){ //limpa a tela
         fieldq.setText("");
         fielda.setText("");
         fieldcpf.setText("");

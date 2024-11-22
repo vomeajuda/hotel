@@ -37,34 +37,34 @@ public class Excluir extends JFrame{
             janela.add(combo, BorderLayout.CENTER); //adição de um field
             janela.add(panel, BorderLayout.SOUTH); //adição de painel
     
-            btnE.addActionListener((actionEvent) -> {
+            btnE.addActionListener((actionEvent) -> { //ação do btnE
                 int x;
-                Quarto q = new Quarto();
+                Quarto q = new Quarto(); //Roda o construtor de quarto
                 try{
-                q = new Quarto(Integer.parseInt(combo.getSelectedItem().toString()));
+                q = new Quarto(Integer.parseInt(combo.getSelectedItem().toString())); //Roda o construtor de quarto com informações
                 }catch (Exception e){
                     JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
                     x = 0;
                 }
-                x = Delete.delete(q, this);
+                x = Delete.delete(q, this); //deleta o quarto selecionado
                 if (x == 1){
-                this.dispose();
-                Main.telaP.setVisible(true);
+                this.dispose(); //fecha a tela
+                Main.telaP.setVisible(true); //carrega a tela principal
                 }
             });
     
-            btnV.addActionListener((actionEvent) -> {
-                this.dispose();
-                Main.telaP.setVisible(true);
+            btnV.addActionListener((actionEvent) -> { //ação do btnV
+                this.dispose(); //fecha a tela
+                Main.telaP.setVisible(true); //carrega a tela principal
             });
         }
     
         @SuppressWarnings("unchecked")
-        public static void fill(Quarto q1){
+        public static void fill(Quarto q1){ //preenche a combobox de quartos
             combo.addItem(q1.getQuartoc());
         }
 
-        public static void reset(){
+        public static void reset(){ //remove os quartos da combobox
             combo.removeAllItems();
         }
 }

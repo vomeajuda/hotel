@@ -59,38 +59,38 @@ public class Consulta1 extends JFrame{
 
         pack();
 
-        btnE.addActionListener((actionEvent) -> {
+        btnE.addActionListener((actionEvent) -> { //ação do btnE
             modelo.setRowCount(0);
-            Quarto q = new Quarto();
+            Quarto q = new Quarto(); //rodando o construtor de quarto
             try{
-                q.setQuarto(Integer.parseInt(combo.getSelectedItem().toString()));
-                Carregar.carregar(q);
+                q.setQuarto(Integer.parseInt(combo.getSelectedItem().toString())); //rodando o construtor de quarto com informações
+                Carregar.carregar(q); //carrega um registro especifico do banco
             }catch (Exception e){
                 
             }
         });
 
-        btnT.addActionListener((actionEvent) -> {
-            modelo.setRowCount(0);
-            Todos.todos();
+        btnT.addActionListener((actionEvent) -> { //ação do btnT
+            modelo.setRowCount(0); //volta para a primeira linha da tabela
+            Todos.todos(); //carrega todos os registros do banco
         });
 
-        btnV.addActionListener((actionEvent) -> {
-            this.dispose();
-            Main.telaP.setVisible(true);
+        btnV.addActionListener((actionEvent) -> { //ação do btnV
+            this.dispose(); //Fecha a tela
+            Main.telaP.setVisible(true); // carrega a tela principal
         });
     }
 
-    public static void atualizar(Quarto q1){
+    public static void atualizar(Quarto q1){ //atualiza a tela preenchendo a tabela
         modelo.addRow(q1.getLinha());
     }
 
     @SuppressWarnings("unchecked")
-    public static void fill(Quarto q2){
+    public static void fill(Quarto q2){ //preenche a combobox com os quartos
         combo.addItem(q2.getQuartoc());
     }
 
-    public static void reset(){
+    public static void reset(){ //limpa a tela
         combo.removeAllItems();
         modelo.setRowCount(0);
     }

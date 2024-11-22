@@ -121,39 +121,39 @@ public class Edit extends JFrame{
         pack();
         reset();
 
-        btnC.addActionListener((actionEvent) -> {
-            Quarto q1 = new Quarto();
+        btnC.addActionListener((actionEvent) -> { //ação do btnC
+            Quarto q1 = new Quarto(); //Roda o construtor de quarto
             try{
-                q1 = new Quarto(Integer.parseInt(combo.getSelectedItem().toString()=="" ? "0" : combo.getSelectedItem().toString()));
-                Consultar.consultar(q1, this);
+                q1 = new Quarto(Integer.parseInt(combo.getSelectedItem().toString()=="" ? "0" : combo.getSelectedItem().toString())); //roda o construtor de quarto com informações
+                Consultar.consultar(q1, this); //consulta o quarto no banco
             }catch(Exception e){
                 
             }
         });
 
-        btnE.addActionListener((actionEvent) -> {
-            Quarto q2 = new Quarto();
+        btnE.addActionListener((actionEvent) -> { //ação do btnE
+            Quarto q2 = new Quarto(); //Roda o construtor de quarto
             int x;
             try{
-            q2 = new Quarto(Integer.parseInt(combo.getSelectedItem().toString()), Integer.parseInt(fielda.getText()), fieldcpf.getText(), checkV.isSelected(), checkM.isSelected(), checkF.isSelected(), checkT.isSelected(), radio1.isSelected());
-            x = Editar.editar(q2, this);
+            q2 = new Quarto(Integer.parseInt(combo.getSelectedItem().toString()), Integer.parseInt(fielda.getText()), fieldcpf.getText(), checkV.isSelected(), checkM.isSelected(), checkF.isSelected(), checkT.isSelected(), radio1.isSelected()); //Roda o construtor de quarto com informações
+            x = Editar.editar(q2, this); //faz a edição do quarto no banco
             }catch (Exception e){
                 JOptionPane.showMessageDialog(this, "Por favor, preencha todos os campos");
                 x = 0;
             }
             if (x == 1){
-            this.dispose();
-            Main.telaP.setVisible(true);
+            this.dispose(); //fecha a tela
+            Main.telaP.setVisible(true); //carrega a tela principal
             }
         });
 
-        btnV.addActionListener((actionEvent) -> {
-            this.dispose();
-            Main.telaP.setVisible(true);
+        btnV.addActionListener((actionEvent) -> { //ação do btnV
+            this.dispose(); //fecha a tela
+            Main.telaP.setVisible(true); //carrega a tela principal
         });
     }
 
-    public static void alterar(Quarto q3){
+    public static void alterar(Quarto q3){ //preenche os elementos da pagina com as informações do quarto
         fielda.setText(String.valueOf(q3.getAcomoda()));
         fieldcpf.setText(q3.getCPF());
         checkV.setSelected(q3.getVarandac());
@@ -170,11 +170,12 @@ public class Edit extends JFrame{
     }
 
     @SuppressWarnings("unchecked")
-    public static void fill(Quarto q4){
+    public static void fill(Quarto q4){ //preenche a combobox de quartos
         combo.addItem(q4.getQuartoc());
     }
 
-    public static void reset(){
+    public static void reset(){ //apaga todos os elementos da tela
+        combo.removeAllItems();
         fielda.setText("");
         fieldcpf.setText("");
         checkV.setSelected(false);
