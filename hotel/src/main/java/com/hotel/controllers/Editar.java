@@ -29,6 +29,14 @@ public class Editar {
             
         }
 
+        try{
+            if (q.getCPF().length() >= 1 && ocupado == false){ //checa se tem cpf escrito e não esta ocupado para mostrar erro
+                    JOptionPane.showMessageDialog(frame,"Não insira um cpf se não estiver ocupado");
+                    return 0;
+            }}catch (Exception e){
+                    
+        }
+
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             String query = "UPDATE quartos SET acomoda = ?, cpf = ?, varanda = ?, microondas = ?, frigobar = ?, tv = ?, ocupado = ? WHERE N_Quarto = ?"; //comando para realizar o update
             try (PreparedStatement a = con.prepareStatement(query)) {

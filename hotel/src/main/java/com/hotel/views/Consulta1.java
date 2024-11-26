@@ -50,6 +50,7 @@ public class Consulta1 extends JFrame{
 
         JTable tabela = new JTable(modelo); //criação da tabela
         JScrollPane scroll = new JScrollPane(tabela); //criação do scroll
+        scroll.setPreferredSize(new Dimension(700, 300));
 
         Container janela; //criação da janela
         janela = getContentPane();
