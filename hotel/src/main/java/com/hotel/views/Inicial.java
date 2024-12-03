@@ -8,6 +8,7 @@ import java.awt.*;
 public class Inicial extends JFrame{
     private JLabel titulo; //declaração de todos os objetos
     private JButton btnI, btnC, btnEd, btnEx, btnS;
+    private int x;
 
     public Inicial(){
         super("Inicio");
@@ -40,23 +41,38 @@ public class Inicial extends JFrame{
         btnC.addActionListener((actionEvent) -> { //ação do btnC
             this.dispose(); //fecha a tela
             Consulta1.reset(); //limpa a tela
-            NQuartos.nquartos(2); //preenche a combobox da pag
+            x = NQuartos.nquartos(2); //preenche a combobox da pag
+            if (x == 1){
             Main.telaC1.setVisible(true); //abre a tela de consulta
+            } else {
+                Main.telaP.setVisible(true); //abre a tela
+                Main.telaP.setSize(300, 200); //define o tamanho
+            }
         });
 
         btnEd.addActionListener((actionEvent) -> { //ação do btnEd
             this.dispose(); //fecha a tela
             Edit.reset(); //limpa a tela
-            NQuartos.nquartos(1); //preenche a combobox da pag
+            x = NQuartos.nquartos(1); //preenche a combobox da pag
+            if (x == 1){
             Main.telaEd.setVisible(true); //abre a tela de Edição
+            } else {
+                Main.telaP.setVisible(true); //abre a tela
+                Main.telaP.setSize(300, 200); //define o tamanho
+            }
         });
 
         btnEx.addActionListener((actionEvent) -> { //ação do btnEx
             this.dispose(); //fecha a tela
             Excluir.reset(); //limpa a tela
-            NQuartos.nquartos(3); //preenche a combobox da pag
+            x = NQuartos.nquartos(3); //preenche a combobox da pag
+            if (x == 1){
             Main.telaEx.setVisible(true); //abre a tela de exclusão
             Main.telaEx.setSize(200, 150); //define o tamanho
+            } else {
+                Main.telaP.setVisible(true); //abre a tela
+                Main.telaP.setSize(300, 200); //define o tamanho
+            }
         });
 
         btnS.addActionListener((actionEvent) -> { //ação do btnS

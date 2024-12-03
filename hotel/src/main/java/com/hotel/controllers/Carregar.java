@@ -59,7 +59,7 @@ public class Carregar {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Erro ao conectar ao banco");
+            JOptionPane.showMessageDialog(null,"Erro ao conectar ao banco", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

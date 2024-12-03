@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 public class NQuartos {
 
-    public static void nquartos(int n) {
+    public static int nquartos(int n) {
         String url = "jdbc:mysql://localhost:3306/hotel_ds"; //informações para conectar com o banco
         String user = "root";
         String password = "";
@@ -30,17 +30,23 @@ public class NQuartos {
                 q1.setQuartoc(x); //coloca o número do quarto neste modelo
                 if (n == 1){ //utiliza o número passado para preencher a pagina certa
                     Edit.fill(q1); //se 1 carrega em edição
+                    return 1;
                 }else if (n == 2){ 
                     Consulta1.fill(q1); //se 2 carrega em consulta
+                    return 1;
                 }else if (n == 3){ 
                     Excluir.fill(q1); //se 3 carrega em excluir
+                    return 1;
                 }else{
                     JOptionPane.showMessageDialog(null,"Erro");
+                    return 0;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
             JOptionPane.showMessageDialog(null,"Erro ao conectar ao banco", "Erro", JOptionPane.ERROR_MESSAGE);
+            return 0;
         }
+        return 0;
     }
 }

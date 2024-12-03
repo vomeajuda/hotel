@@ -22,7 +22,7 @@ public class Delete {
                 return 1;
         } catch (SQLException e) {
             e.printStackTrace();
-            JOptionPane.showMessageDialog(null,"Erro ao conectar ao banco");
+            JOptionPane.showMessageDialog(null,"Erro ao conectar ao banco", "Erro", JOptionPane.ERROR_MESSAGE);
             return 1;
         }
     }
