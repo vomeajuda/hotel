@@ -35,6 +35,7 @@ public class Consultar {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Erro ao conectar ao banco");
         }
     }
 }

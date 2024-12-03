@@ -63,7 +63,8 @@ public class Inserir {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
+            JOptionPane.showMessageDialog(null,"Erro ao conectar ao banco");
+            return 1;
         }
     }
 }

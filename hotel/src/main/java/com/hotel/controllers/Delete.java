@@ -14,24 +14,16 @@ public class Delete {
         String password = "";
 
         try (Connection con = DriverManager.getConnection(url, user, password);
-             PreparedStatement a = con.prepareStatement("SELECT * FROM quartos WHERE N_Quarto = ?"); //define e executa a verificação se o quarto selecionado existe
              PreparedStatement b = con.prepareStatement("DELETE FROM quartos WHERE N_Quarto = ?")) { //deleta o quarto selecionado
 
-            a.setInt(1, q.getQuarto()); //coloca no select o numero do quarto
-            ResultSet rs = a.executeQuery(); //roda o select
-
-            if (rs.next()) { //roda se tiver resultado vindo do select
                 b.setInt(1, q.getQuarto()); //coloca o numero do quarto no comando de delete
                 b.executeUpdate(); //roda o delete
                 JOptionPane.showMessageDialog(frame, "Quarto excluído com sucesso");
                 return 1;
-            } else { //se não tiver resultado do select dar erro
-                JOptionPane.showMessageDialog(frame, "Quarto não encontrado");
-                return 0;
-            }
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
+            JOptionPane.showMessageDialog(null,"Erro ao conectar ao banco");
+            return 1;
         }
     }
 }

@@ -6,6 +6,8 @@ import com.hotel.views.Consulta1;
 import java.sql.*;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 public class Todos {
 
     public static void todos() {
@@ -56,6 +58,7 @@ public class Todos {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Erro ao conectar ao banco");
         }
     }
 }

@@ -55,7 +55,8 @@ public class Editar {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            return 0;
+            JOptionPane.showMessageDialog(null,"Erro ao conectar ao banco", "Erro", JOptionPane.ERROR_MESSAGE);
+            return 1;
         }
     }
 }
